@@ -5,7 +5,7 @@
 <!-- Таблица для редактирования основных данных соревнований -->
 	
 	<div class="col-lg-12">
-		<h1 class="page-header">Редактирование основных данных соревнований</h1>
+		<h1 class="page-header">Основные данные о соревнованиях</h1>
 	</div>
 
 	<div class="row">
@@ -65,13 +65,12 @@
 								
 								
 								
-								<form action="{{ url('/edit_competition') }}" method="post">
-									{{ csrf_field() }}
-									<button type="submit" name="competition_number" class="btn btn-danger" value="">Редактировать </button>	
+								
+									<a href="{{ url('/edit_competition') }}"><button type="submit" name="competition_number" class="btn btn-danger" value="">Редактировать </button></a>	
 
 									<a href="{{ url('/get_back') }}"><button type="button" class="btn btn-primary">Назад </button></a>
 								
-								</form>								
+															
                                 								
                             </div>
                             <!-- /.table-responsive -->

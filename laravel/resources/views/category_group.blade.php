@@ -11,14 +11,16 @@
 
     <div class="row">
         <p><a href="{{url('/add_category')}}"><button type="button" class="btn btn-primary btn-lg">Добавить весовую категорию <i class="fa fa-plus-circle"></i></button></a>
-        </p>
+        &nbsp;&nbsp;&nbsp;
+		<a href="{{ url('/back_to_groups') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>
+		</p>
     </div>
 
     <div class="row">
         <!--<div class="col-lg-6">-->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Весовые категории: 12-13 лет (мужчины)
+                    Весовые категории:  {{$group -> name}}  <!--12-13 лет (мужчины)-->
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -33,14 +35,25 @@
                             </tr>
                             </thead>
                             <tbody>
+							
+							@foreach ($categories->sortBy('name') as $category)
+							
                             <tr>
-                                <td>1</td>
-                                <td>до 56 кг</td>
-                                <td>52.100</td>
-                                <td>56.000</td>
-                                <td><button type="button" class="btn btn-primary">Редактировать</button></td>
-								<td><button type="button" class="btn btn-danger">Удалить</button></td>
+                                <td>{{ $i++ }}</td>
+                                <td> {{ $category -> name }} </td>
+                                <td> {{ $category -> min_weight }} </td>
+                                <td> {{ $category -> max_weight }} </td>
+                                <td><a href=" {{ route('editCategory', ['id' => $category -> id]) }} "><button type="button" class="btn btn-primary">Редактировать</button></a></td>
+								<td>
+									<form action="{{ route('categoryDelete', ['category' => $category->id]) }}" method="post">
+										{{ csrf_field() }}
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" class="btn btn-danger">Удалить</button>
+									</form>
+								</td>
                             </tr>
+							@endforeach
+							<!--
                             <tr>
                                 <td>2</td>
                                 <td>до 75 кг</td>
@@ -56,7 +69,9 @@
                                 <td>нет</td>
                                 <td><button type="button" class="btn btn-primary">Редактировать</button></td>
 								<td><button type="button" class="btn btn-danger">Удалить</button></td>
-                            </tr>
+                            </tr>							
+							-->
+							
                             </tbody>
                         </table>
                     </div>

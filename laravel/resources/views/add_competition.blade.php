@@ -18,7 +18,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form action="{{url('add_comp')}}" method="post" role="form">
+                                    <form action="{{url('add_competition')}}" method="post" role="form">
                                         {{ csrf_field() }}
 
                                         <div class="form-group">

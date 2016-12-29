@@ -24,7 +24,7 @@
 								
                                 <div class="form-group">
                                     <label>Название группы:</label>
-                                    <input class="form-control" placeholder="Например, юноши 12-13 лет" name="name" value=" {{ $group -> name }} ">
+                                    <input class="form-control" placeholder="Например, юноши 12-13 лет" name="name" value="{{$group -> name}}">
                                 </div>
                                 <!-- <div class="form-group">
                                     <label>Минимальный возраст (полных лет):</label>

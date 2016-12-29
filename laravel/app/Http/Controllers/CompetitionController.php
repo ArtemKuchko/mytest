@@ -10,48 +10,49 @@ use DB;
 class CompetitionController extends Controller
 {
 
-    //protected $competitions;
-
-    public function index(Request $request)
+	//показ текущих соревнований:
+    public function show(Request $request)
     {
         $competitions = App\Competition::all();
 		
 		//для вывода номера соревнования:
 		$i=1;
 		
-        return view('choose_competition', ['competitions' => $competitions, 'i' => $i]);
+        return view('/competitions', ['competitions' => $competitions, 'i' => $i]);
     }
 
-    //создание новых соревнований:
-    public function store(Request $request) 
+    //добавление новых соревнований:
+    public function add(Request $request) 
 	{
 		$data = $request->all();		
 		$competition = new Competition;		
 		$competition->fill($data);		
 		$competition->save();
 				
-        return redirect('/choose_competition');
+        return redirect('/competitions');
     }
 
-	public function showCurrent($id) 
+	// переход в окно текущих (интересующих, конкретных) соревнований
+	public function edit($id) 
 	{	
 		$competition = Competition::find($id);		
 		session(['id'=>$id]);
 		
-		return view('competitionContent')->with('competition', $competition);
+		return view('competition_content')->with('competition', $competition);
 		
 	}
-
+	// показ основных данных:
 	public function show_main_data (Request $request, Competition $competition)
-	{		
+	{	
+		
 		$id = $request->session()->get('id');				
 		$competition = Competition::find($id);		
 		
 		return view('competition_main')->with('competition', $competition);		
 		
 	}
-	
-	
+		
+	//переход в режим редактирования основных данных:
 	public function edit_competition(Request $request, Competition $competition)
 	{
 
@@ -60,8 +61,10 @@ class CompetitionController extends Controller
 		
 		return view ('edit_competition', ['competition' => $competition] );
 	}
+	//----------------------
 	
-	public function update_competition (Request $request, Competition $competition)
+	//обновление данных:
+	public function update (Request $request, Competition $competition)
 	{			
 		$id = $request->session()->get('id');
 				
@@ -75,18 +78,20 @@ class CompetitionController extends Controller
 																			
 																			]);	
 				
-		//$competition = DB::table('competitions')->where('id', $competition_number)->get();
 		$competition = Competition::find($id);
 					
 		return view('competition_main')->with('competition', $competition);
 				
 	}
 
-	public function get_back(Request $request)
+	
+	//кнопка возврата назад:
+	public function back(Request $request)
 	{
 		$id = $request->session()->get('id');
-		$competition = Competition::find($id);		
-		return view('competitionContent')->with('competition', $competition);
+		$competition = Competition::find($id);
+
+		return view('competition_content')->with('competition', $competition);
 	}
 		
 }

@@ -270,7 +270,7 @@
                             <a href="{{url('/add_competition')}}"><i class="fa fa-plus-square-o"></i>  Добавить соревнование</a>
                         </li>
                         <li>
-                            <a href="{{url('/choose_competition')}}"><i class="fa fa-trophy"></i> Текущие соревнования<!--<span class="fa arrow"></span>--></a>
+                            <a href="{{url('/competitions')}}"><i class="fa fa-trophy"></i> Текущие соревнования<!--<span class="fa arrow"></span>--></a>
                         </li>
                         <li>
                             <a href="{{url('/calendar')}}"><i class="fa fa-calendar"></i> Календарь</a>

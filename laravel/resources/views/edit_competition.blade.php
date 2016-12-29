@@ -23,26 +23,26 @@
 
                                         <div class="form-group">
                                             <label>Название соревнований:</label>
-                                            <input class="form-control" name="name" placeholder="Например, Чемпионат Украины по ушу-саньда" value="{{ $competition -> name }}">
+                                            <input class="form-control" name="name" placeholder="Например, Чемпионат Украины по ушу-саньда" value="{{$competition -> name}}">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Место проведения соревнований:</label>
-                                            <input class="form-control" name="place" placeholder="Например, Винница" value="{{ $competition -> place }}">
+                                            <input class="form-control" name="place" placeholder="Например, Винница" value="{{$competition -> place}}">
                                         </div>
 
 										<div class="form-group">
                                             <label>Дата начала соревнований:</label>
-                                            <input type="date" name="date_start" class="form-control" placeholder="" value="{{ $competition -> date_start }}">
+                                            <input type="date" name="date_start" class="form-control" placeholder="" value="{{$competition -> date_start}}">
                                         </div>
 										<div class="form-group">
                                             <label>Дата окончания соревнований:</label>
-                                            <input type="date" name="date_end" class="form-control" placeholder="" value="{{ $competition -> date_end }}">
+                                            <input type="date" name="date_end" class="form-control" placeholder="" value="{{$competition -> date_end}}">
                                         </div>
                                         
 										<div class="form-group">
                                             <label>Срок подачи заявок:</label>
-                                            <input type="date" name="dead_line" class="form-control" placeholder="" value="{{ $competition -> dead_line }}">
+                                            <input type="date" name="dead_line" class="form-control" placeholder="" value="{{$competition -> dead_line}}">
                                         </div>
 										
 										<div class="form-group">
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Описание</label>
-                                            <textarea name="description" class="form-control" rows="3">{{ $competition -> description }}</textarea>
+                                            <textarea name="description" class="form-control" rows="3">{{$competition -> description}}</textarea>
                                         </div>
                                         
                                         

@@ -12,9 +12,7 @@ use DB;
 
 class GroupController extends Controller
 {
-    //
-	
-	
+
 	public function show(Request $request)
 	{		
         $groups = App\Group::all();
@@ -28,13 +26,12 @@ class GroupController extends Controller
 	
 	public function add(Request $request)
 	{
+				
 		$data = $request->all();
 		
 		$group = new Group;
-		$group -> fill($data);		
-		$group -> category_id ="1";		
-		$group -> competition_id ="1";
-		
+		$group -> fill($data);				
+		$group -> competition_id =1;		
 		$group -> save();
 		
 		return redirect ('/groups');
@@ -43,23 +40,33 @@ class GroupController extends Controller
 	
 	public function edit($id)
 	{		
-		//dd($id);
 		$group = Group::find($id);
-		session('group_id', $id);
+		session(['group_id'=> $id]);
 		
 		return view ('edit_group', ['group' => $group, 'id' => $id] );
 		
 	}
 	
-	public function update(Request $request)
+	public function update(Request $request, Group $group)
 	{
 			$id = $request->session()->get('group_id');
 			
 			DB::table('groups')->where('id', $id)->update(['name' => $request -> name,
 														  'gender' => $request -> gender]);
 																
-			//return redirect ('/groups'); 
+			return redirect ('/groups'); 
 		
+	}
+	
+	public function back(Request $request)
+	{
+		return redirect('/groups');		
+	}
+	
+	public function delete(Request $request, Group $group)
+	{
+		$group -> delete();		
+		return redirect ('/groups');
 	}
 	
 	

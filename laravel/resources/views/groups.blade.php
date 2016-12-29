@@ -11,7 +11,11 @@
 
 <div class="row">
     <p><a href="{{url('/add_group')}}"><button type="button" class="btn btn-primary btn-lg">Добавить возрастную группу <i class="fa fa-plus-circle"></i></button></a>
-    </p>
+	&nbsp;&nbsp;&nbsp;
+    <a href="{{ url('/get_back') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>
+	
+	</p>
+	
 </div>
 
 <div class="row">
@@ -34,9 +38,10 @@
 									
                                     <tbody>
 									
-										@foreach ($groups as $group)
+										@foreach ($groups->sortBy('name') as $group)
+																				
                                         <tr>
-                                            <td>1</td>
+                                            <td> {{$i++}} </td>
                                             <td> {{ $group -> name }} </td>
                                             <td> 
 											@if ($group -> gender == "M")
@@ -46,9 +51,15 @@
 												Женский
 											@endif
 											</td>
-                                            <td><a href="{{ url('/category_group')}}"><button type="button" class="btn btn-success">Категории <i class="fa fa-arrow-right"></i></button></a></td>
+                                            <td><a href="{{ route('categoryGroup', ['id' => $group->id])}}"><button type="button" class="btn btn-success">Категории <i class="fa fa-arrow-right"></i></button></a></td>
                                             <td><a href="{{ route('editGroup', ['id' => $group->id] ) }}"><button type="button" class="btn btn-primary" value="" >Редактировать</button></a></td>
-											<td><button type="button" class="btn btn-danger">Удалить</button></td>
+											<td>
+												<form action=" {{ route('groupDelete', ['group'=> $group->id] ) }}" method="post">
+													{{ csrf_field() }}
+													<input type="hidden" name="_method" value="DELETE">
+													<button type="submit" class="btn btn-danger">Удалить</button>
+												</form>
+											</td>
                                         </tr>
 										@endforeach
 										
