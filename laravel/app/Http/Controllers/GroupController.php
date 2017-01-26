@@ -18,9 +18,12 @@ class GroupController extends Controller
         $groups = App\Group::all();
 		
 		//для вывода номера соревнования:
-		$i=1;
-		
-        return view('groups', ['groups' => $groups, 'i' => $i]);
+		//$i=1;
+		//$id = $request->session()->get('id');
+		//$competition = Competition::find($id);
+
+
+        return view('groups', ['groups' => $groups]);
 		
 	}
 	

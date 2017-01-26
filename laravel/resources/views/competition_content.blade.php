@@ -67,7 +67,7 @@
                         <div class="panel-body">
                             <p>Взвешивание участников соревнований</p>
                         </div>
-                        <a href="#"><div class="panel-footer">
+                        <a href="{{ url('/weighing') }}"><div class="panel-footer">
                             Подробнее <i class="fa fa-long-arrow-right"></i>
                         </div></a>
                     </div>
@@ -81,7 +81,7 @@
                         <div class="panel-body">
                             <p>Жеребьевка и сетка участников</p>
                         </div>
-                        <a href="#"><div class="panel-footer">
+                        <a href="{{ url('/grids') }}"><div class="panel-footer">
                             Подробнее <i class="fa fa-long-arrow-right"></i>
                         </div></a>
                     </div>
@@ -135,10 +135,10 @@
                 <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Запасная панель
+                            Дополнительный функционал
                         </div>
                         <div class="panel-body">
-                            <p>Запасная панель</p>
+                            <p>Перемещение в другую весовую и т.д.</p>
                         </div>
                         <a href="#"><div class="panel-footer">
                             Подробнее <i class="fa fa-long-arrow-right"></i>

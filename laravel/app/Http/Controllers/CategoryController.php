@@ -20,10 +20,8 @@ class CategoryController extends Controller
 		$group = App\Group::find($id);
 		$categories = DB::table('categories')->where('group_id', $group->id)->get();		
 		session(['group_id'=> $id]);
-		
-		$i = 1;
-		
-		return view('/category_group', ['categories' => $categories, 'group' => $group, 'i' => $i]);
+
+		return view('/category_group', ['categories' => $categories, 'group' => $group]);
 				
 	}
 	

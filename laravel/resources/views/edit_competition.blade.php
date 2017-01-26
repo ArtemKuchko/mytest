@@ -23,7 +23,7 @@
 
                                         <div class="form-group">
                                             <label>Название соревнований:</label>
-                                            <input class="form-control" name="name" placeholder="Например, Чемпионат Украины по ушу-саньда" value="{{$competition -> name}}">
+                                            <input class="form-control" name="name" placeholder="Например, Чемпионат Украины по ушу-саньда" value="{{$competition -> name}}" required>
                                         </div>
 
                                         <div class="form-group">
@@ -49,18 +49,18 @@
 											<label>Выберите уровень соревнований:</label>
 											<select class="form-control" name="level">
 											
-													@if ($competition -> level == "Национальный")													
-														<option selected value="Национальный">Национальный</option>
-														<option value="Областной">Областной</option>
-														<option value="Городской">Городской</option>													
-													@elseif ($competition -> level == "Областной")														
-														<option selected value="Областной">Областной</option>
-														<option value="Национальный">Национальный</option>
-														<option value="Городской">Городской</option>
+													@if ($competition -> level == 1)													
+														<option selected value="1">Национальный</option>
+														<option value="2">Областной</option>
+														<option value="3">Городской</option>													
+													@elseif ($competition -> level == 2)														
+														<option selected value="2">Областной</option>
+														<option value="1">Национальный</option>
+														<option value="3">Городской</option>
 													@else
-														<option selected value="Городской">Городской</option>
-														<option value="Национальный">Национальный</option>
-														<option value="Областной">Областной</option>												
+														<option selected value="3">Городской</option>
+														<option value="1">Национальный</option>
+														<option value="2">Областной</option>												
 													@endif
 													
 											</select>

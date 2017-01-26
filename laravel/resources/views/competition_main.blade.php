@@ -5,7 +5,10 @@
 <!-- Таблица для редактирования основных данных соревнований -->
 	
 	<div class="col-lg-12">
-		<h1 class="page-header">Основные данные о соревнованиях</h1>
+		<h1 class="page-header">
+        <a href="{{ route('CompetitionShow', ['id' => $competition-> id ]) }}"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-arrow-left"></i>
+        </button></a>
+            Основные данные о соревнованиях</h1>
 	</div>
 
 	<div class="row">
@@ -47,7 +50,14 @@
                                         </tr>
 										<tr>
                                             <td>Уровень соревнований</td>
-                                            <td>{{ $competition -> level }}</td>
+											
+											@if ($competition->level == 1)
+												<td>Национальный</td>
+											@elseif ($competition->level == 2)
+												<td>Областной</td>
+											@else
+												<td>Городской</td>
+											@endif
                                                
                                         </tr>
 
@@ -66,12 +76,8 @@
 								
 								
 								
-									<a href="{{ url('/edit_competition') }}"><button type="submit" name="competition_number" class="btn btn-danger" value="">Редактировать </button></a>	
+                                <a href="{{ url('/edit_competition') }}"><button type="submit" name="competition_number" class="btn btn-danger" value="">Редактировать </button></a>
 
-									<a href="{{ url('/get_back') }}"><button type="button" class="btn btn-primary">Назад </button></a>
-								
-															
-                                								
                             </div>
                             <!-- /.table-responsive -->
                         </div>

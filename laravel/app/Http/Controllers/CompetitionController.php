@@ -14,11 +14,7 @@ class CompetitionController extends Controller
     public function show(Request $request)
     {
         $competitions = App\Competition::all();
-		
-		//для вывода номера соревнования:
-		$i=1;
-		
-        return view('/competitions', ['competitions' => $competitions, 'i' => $i]);
+        return view('/competitions', ['competitions' => $competitions]);
     }
 
     //добавление новых соревнований:
@@ -33,11 +29,12 @@ class CompetitionController extends Controller
     }
 
 	// переход в окно текущих (интересующих, конкретных) соревнований
-	public function edit($id) 
-	{	
-		$competition = Competition::find($id);		
+	public function edit($id)
+	{
 		session(['id'=>$id]);
-		
+
+		$competition = Competition::find($id);		
+
 		return view('competition_content')->with('competition', $competition);
 		
 	}

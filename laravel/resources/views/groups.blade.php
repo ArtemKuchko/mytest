@@ -4,7 +4,10 @@
 
 <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Добавление возрастных групп </h1>
+                    <h1 class="page-header">
+                    <a href="{{ route('CompetitionShow', ['id' => session('id') ]) }}"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-arrow-left"></i>
+                    </button></a>
+                    Добавление возрастных групп </h1>
                 </div>
                 <!-- /.col-lg-12 -->
 </div>
@@ -12,7 +15,7 @@
 <div class="row">
     <p><a href="{{url('/add_group')}}"><button type="button" class="btn btn-primary btn-lg">Добавить возрастную группу <i class="fa fa-plus-circle"></i></button></a>
 	&nbsp;&nbsp;&nbsp;
-    <a href="{{ url('/get_back') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>
+    <!--<a href="{{ url('/get_back') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>-->
 	
 	</p>
 	
@@ -41,7 +44,7 @@
 										@foreach ($groups->sortBy('name') as $group)
 																				
                                         <tr>
-                                            <td> {{$i++}} </td>
+                                            <td> {{$loop -> iteration}} </td>
                                             <td> {{ $group -> name }} </td>
                                             <td> 
 											@if ($group -> gender == "M")
@@ -62,25 +65,7 @@
 											</td>
                                         </tr>
 										@endforeach
-										
-										<!--
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Юниоры 16-17 лет</td>
-                                            <td>Мужчины</td>
-                                            <td><button type="button" class="btn btn-success">Категории <i class="fa fa-arrow-right"></i></button></td>
-                                            <td><button type="button" class="btn btn-primary">Редактировать</button></td>
-											<td><button type="button" class="btn btn-danger">Удалить</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Взрослые 18+ лет</td>
-                                            <td>Мужчины</td>
-                                            <td><button type="button" class="btn btn-success">Категории <i class="fa fa-arrow-right"></i></button></td>
-                                            <td><button type="button" class="btn btn-primary">Редактировать</button></td>
-											<td><button type="button" class="btn btn-danger">Удалить</button></td>
-                                        </tr>-->
-										
+
 									
                                     </tbody>
                                 </table>

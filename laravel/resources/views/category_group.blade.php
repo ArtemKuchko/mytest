@@ -4,7 +4,10 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Редактирование весовых категорий</h1>
+            <h1 class="page-header">
+            <a href="{{ url('/back_to_groups') }}"><button type="button" class="btn btn-default btn-circle btn-xl"><i class="fa fa-arrow-left"></i>
+            </button></a>
+            Редактирование весовых категорий</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -12,7 +15,7 @@
     <div class="row">
         <p><a href="{{url('/add_category')}}"><button type="button" class="btn btn-primary btn-lg">Добавить весовую категорию <i class="fa fa-plus-circle"></i></button></a>
         &nbsp;&nbsp;&nbsp;
-		<a href="{{ url('/back_to_groups') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>
+		<!--<a href="{{ url('/back_to_groups') }}"><button type="button" class="btn btn-warning btn-lg">Назад</button></a>-->
 		</p>
     </div>
 
@@ -39,7 +42,7 @@
 							@foreach ($categories->sortBy('name') as $category)
 							
                             <tr>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $loop -> iteration }}</td>
                                 <td> {{ $category -> name }} </td>
                                 <td> {{ $category -> min_weight }} </td>
                                 <td> {{ $category -> max_weight }} </td>
@@ -53,24 +56,7 @@
 								</td>
                             </tr>
 							@endforeach
-							<!--
-                            <tr>
-                                <td>2</td>
-                                <td>до 75 кг</td>
-                                <td>70.100</td>
-                                <td>75.000</td>
-                                <td><button type="button" class="btn btn-primary">Редактировать</button></td>
-								<td><button type="button" class="btn btn-danger">Удалить</button></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>свыше 90 кг</td>
-                                <td>90.000</td>
-                                <td>нет</td>
-                                <td><button type="button" class="btn btn-primary">Редактировать</button></td>
-								<td><button type="button" class="btn btn-danger">Удалить</button></td>
-                            </tr>							
-							-->
+
 							
                             </tbody>
                         </table>

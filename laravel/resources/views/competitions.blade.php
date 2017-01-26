@@ -45,7 +45,7 @@
 								
 									@foreach ($competitions as $competition)
                                         <tr>
-                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $loop -> iteration }}</td>
                                             <td>{{ $competition -> name }}</td>
 											<td>{{ $competition -> date_start .' - '. $competition -> date_end }}</td>
                                             <td>
