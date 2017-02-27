@@ -25,4 +25,6 @@ Route::get('/photos_{id}', 'PhotoController@show');
 //Route::get('/photo_{id}', 'PhotoController@showItem');
 
 
-
+Route::get('/test', function () {
+    return view('test_git');
+});
