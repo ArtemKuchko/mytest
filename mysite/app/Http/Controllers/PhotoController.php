@@ -15,21 +15,11 @@ class PhotoController extends Controller
     {
         $photos = Photo::where('folder_id', $folder_id)->get();
 
-        //dd(count($photos));
-
         $folder =PhotoFolder::find($folder_id);
 
-        //dd($folder);
-
-        return view('photos', ['photos' => $photos, 'folder' => $folder]);
+		return view('photos_test', ['photos' => $photos, 'folder' => $folder]);
+    	
+		//return view('photos', ['photos' => $photos, 'folder' => $folder]);
     }
 
-    /*public function showItem($item_id)
-    {
-        $photo = Photo::find($item_id);
-
-        $folder = $photo->photofolder()->get();
-
-        return view('photo', ['photo' => $photo, 'folder' => $folder[0]]);
-    }*/
 }

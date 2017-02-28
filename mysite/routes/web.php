@@ -20,10 +20,12 @@ Route::get('/news_{id}', 'NewsController@show');
 
 Route::get('/photofolders', 'PhotoFolderController@index');
 
-Route::get('/photos_{id}', 'PhotoController@show');
+Route::get('/photofolders_{page}', 'PhotoFolderController@show');
 
-//Route::get('/photo_{id}', 'PhotoController@showItem');
 
+//Route::get('/photos_{id}', 'PhotoController@show');
+
+Route::get('/photos_test_{id}', 'PhotoController@show');
 
 Route::get('/test', function () {
     return view('test_git');

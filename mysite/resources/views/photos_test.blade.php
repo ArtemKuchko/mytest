@@ -30,14 +30,14 @@
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Название папки
+            <h1 class="page-header">{{ $folder->name }}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ url('/') }}">Главная</a>
                 </li>
                 <li><a href="{{ url('/photofolders') }}">Фотогалерея</a>
                 </li>
-                <li class="active">Название папки
+                <li class="active">{{ $folder->name }}
                 </li>
             </ol>
         </div>
@@ -51,11 +51,13 @@
                 <!-- Bottom switcher of slider -->
                 <ul class="hide-bullets">
                     
-					<li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-0"><img src="http://placehold.it/150x150&text=zero"></a>
-                    </li>
+					@foreach ($photos as $photo)
+						<li class="col-sm-3">
+							<a class="thumbnail" id="{{ 'carousel-selector-'. $loop->index}}"><img src="{{ 'http://placehold.it/150x150&text='. $loop->index }}"></a>
+						</li>
+					@endforeach
 
-                    <li class="col-sm-3">
+                    <!--<li class="col-sm-3">
                         <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
                     </li>
 
@@ -110,7 +112,7 @@
 
                     <li class="col-sm-3">
                         <a class="thumbnail" id="carousel-selector-15"><img src="http://placehold.it/150x150&text=15"></a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
             <div class="col-sm-6">
@@ -121,10 +123,17 @@
                             <div class="carousel slide" id="myCarousel">
                                 <!-- Carousel items -->
                                 <div class="carousel-inner">
-                                    <div class="active item" data-slide-number="0">
-                                        <img src="http://placehold.it/470x480&text=zero"></div>
+                                    
+									<div class="active item" data-slide-number="0">
+                                        <img src="http://placehold.it/470x480&text=0"></div>
+										
+									@for($i=1; $i<count($photos); $i++)
+										<div class="item" data-slide-number="{{ $i }}">
+											<img src="{{ 'http://placehold.it/470x480&text='. $i }}"></div>
+								
+									@endfor
 
-                                    <div class="item" data-slide-number="1">
+                                    <!--<div class="item" data-slide-number="1">
                                         <img src="http://placehold.it/470x480&text=1"></div>
 
                                     <div class="item" data-slide-number="2">
@@ -167,7 +176,9 @@
                                         <img src="http://placehold.it/470x480&text=14"></div>
 
                                     <div class="item" data-slide-number="15">
-                                        <img src="http://placehold.it/470x480&text=15"></div>
+                                        <img src="http://placehold.it/470x480&text=15"></div>-->
+										
+										
                                 </div>
                                 <!-- Carousel nav -->
                                 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

@@ -18,29 +18,8 @@
         </div>
     </div>
     <!-- /.row -->
-
-        
-		{{--@foreach ($photofolders as $folder)
-		<!-- Project One -->
-        
-		<div class="row">			
-			<div class="col-md-7">
-				<a href="portfolio-item.html">
-					<img class="img-responsive img-hover" width="500px" height="200px" src="{{'images/photofolders/' . $folder->image_path}}" alt="">
-				</a>
-			</div>
-			<div class="col-md-5">
-				<h3>{{ $folder -> name }}</h3>
-				<!--<h4>Subheading</h4>-->
-				<p>{{ str_limit($folder->description, 300) }}</p>
-				<a class="btn btn-primary" href="{{ url('/photos_'. $folder->id) }}">Просмотр</i></a>
-			</div>       
-		</div>
-        <!-- /.row -->
 		
-		<hr>
-		
-		@endforeach --}}
+	@if (count($photofolders)>0)
 		
 		@foreach ($photofolders as $folder)
         <!-- Blog Post Row -->
@@ -51,7 +30,7 @@
                 <p>June 17, 2014</p>
             </div>
             <div class="col-md-5">
-                <a href="{{ url('/photos_'. $folder->id) }}">
+                <a href="{{ url('/photos_test_'. $folder->id) }}">
                     <img class="img-responsive img-hover" height="300px" width="500px"  src="{{'images/photofolders/' . $folder->image_path}}" alt="">
                 </a>
             </div>
@@ -61,7 +40,7 @@
 
                 </p>
                 <p>{{ str_limit($folder->description, 300) }}</p>
-                <a class="btn btn-primary" href="{{ url('/photos_'. $folder->id) }}">Просмотр <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary" href="{{ url('/photos_test_'. $folder->id) }}">Просмотр <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
         <!-- /.row -->
@@ -76,30 +55,46 @@
         <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
+				
+                    
+					
+					@if ($page == 1)
+					
+						<li class="active">
+					@else
+						<li>
+							<a href="{{ url('/photofolders_'. $previous) }}">&laquo;</a>
+						</li>	
+					
+						<li>
+					@endif
+							<a href="{{ url('/photofolders') }}">1</a>
+						</li>
+					@for ($i=2; $i<=$num_pages; $i++)
+							
+						@if ($page == $i)
+							<li class="active">
+						@else
+							<li>
+						@endif
+								<a href="{{ url('/photofolders_'. $i) }}">{{ $i }}</a>
+							</li>											
+					@endfor
+					
+					
+					@if ($page != $num_pages)
+						<li>
+							<a href="{{ url('/photofolders_'. $next) }}">&raquo;</a>
+						</li>
+					@endif
+					
+                    
+					
                 </ul>
             </div>
         </div>
         <!-- /.row -->
+		
+	@endif
 
 @endsection

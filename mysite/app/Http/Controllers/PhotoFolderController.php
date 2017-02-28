@@ -14,32 +14,29 @@ class PhotoFolderController extends Controller
 
     public function index()
     {
-        //$photofolders = PhotoFolder::all();
+        return redirect('/photofolders_1');
 		
-		$photofolders = DB::table('photofolders')->take(1)->get();
-		
-		//постраничный вывод c записью в массив:
-		
-		// на 1 странице допусти 3 записи:
-		$one_page = 3;
-		
-		//тогда всего страниц:
-		$num_pages = intval(count($photofolders)/$one_page);
-		
-		// теерь нужно выводить массив limit $num_pages;
-		
-		
-		
-        return view('photofolders', ['photofolders' => $photofolders]);
-
     }
 
-    /* public function show($id)
+    public function show($page)
     {
-        $photofolder = PhotoFolder::find($id);
+		$photofolders = PhotoFolder::all();
+		
+		// на 1 странице допустим 2 записи:
+		$one_page = 2;		
+		//тогда всего страниц:
+		$num_pages = intval(count($photofolders)/$one_page+0.5);
+		
+		//постраничный вывод c записью в массив:		
+		$offset = $one_page * ($page-1);
+		
+		$previous = $page-1;		
+		$next = $page+1;
+		
+		$photofolders = DB::table('photofolders')->offset($offset)->limit($one_page)->get();
 
-        return view ('photofolder', ['photofolder' => $photofolder]);
+		return view ('photofolders', ['photofolders' => $photofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
 
-    } */
+    }
 
 }
