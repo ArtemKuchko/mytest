@@ -19,14 +19,22 @@ Route::get('/news', 'NewsController@index');
 Route::get('/news_{id}', 'NewsController@show');
 
 Route::get('/photofolders', 'PhotoFolderController@index');
-
 Route::get('/photofolders_{page}', 'PhotoFolderController@show');
+Route::get('/photos_{id}', 'PhotoController@show');
 
-
-//Route::get('/photos_{id}', 'PhotoController@show');
-
-Route::get('/photos_test_{id}', 'PhotoController@show');
+Route::get('/videofolders', 'VideoFolderController@index');
+Route::get('/videofolders_{page}', 'VideoFolderController@show');
+Route::get('/videos_{id}', 'VideoController@show');
 
 Route::get('/test', function () {
     return view('test_git');
 });
+
+Route::get ('/about', function () {
+		return view ('about');	
+});
+
+Route::get ('/contact', function () {
+		return view ('contact');	
+});
+

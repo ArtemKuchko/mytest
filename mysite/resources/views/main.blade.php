@@ -11,6 +11,7 @@
 		<meta name="author" content="">
 
 		<title>Мариуполь - УШУ</title>
+		<link rel="shortcut icon" href="images/small_logo.ico" />
 
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -57,10 +58,10 @@
                     <a href="{{url ('/news')}}">Новости</a>
                 </li>
                 <li>
-                    <a href="{{url ('/photofolders_1')}}">Фотогалерея</a>
+                    <a href="{{url ('/photofolders')}}">Фотогалерея</a>
                 </li>
                 <li>
-                    <a href="{{url ('/videofolders_1')}}">Видеогалерея</a>
+                    <a href="{{url ('/videofolders')}}">Видеогалерея</a>
                 </li>
                 <li>
                     <a href="{{url ('/contact')}}">Контакты</a>

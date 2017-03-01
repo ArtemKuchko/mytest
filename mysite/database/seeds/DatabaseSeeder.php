@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
          $this->call(NewsSeeder::class);
 		 $this->call(PhotoFolderSeeder::class);
 		 $this->call(PhotoSeeder::class);
+		 $this->call(VideoFolderSeeder::class);
+		 $this->call(VideoSeeder::class);
 		 
     }
 }
