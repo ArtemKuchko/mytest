@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('main');
-});
+});*/
+Route::get('/', 'MainController@index');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news_{id}', 'NewsController@show');
@@ -38,3 +39,10 @@ Route::get ('/contact', function () {
 		return view ('contact');	
 });
 
+Route::get ('/sanda', function () {
+		return view ('sanda');	
+});
+
+Route::get ('/taolu', function () {
+		return view ('taolu');	
+});

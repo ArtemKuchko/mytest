@@ -22,8 +22,6 @@
 @endsection
 
 @section('content')
-
-	<div class="container">
 		
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">

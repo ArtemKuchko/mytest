@@ -2,9 +2,6 @@
 
 @section ('content')
 
-    <!-- Page Content -->
-    <div class="container">
-
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
@@ -33,7 +30,8 @@
                 <p><i class="fa fa-clock-o"></i> Опубликовано {{ $one_news->created_at }}</p>
                 <hr>
                 <a href="#">
-                    <img class="img-responsive img-hover" width="400" height="400" src="{{'images/news/' . $one_news->image_path}}" alt="">
+				{{--<img class="img-responsive img-hover" width="400" height="400" src="{{'images/news/' . $one_news->image_path}}" alt="">--}}
+					<img src="{{'images/news/' . $one_news->image_path}}" class="img-thumbnail" alt="" width="304" height="236">
                 </a>
                 <hr>
                 <p>{{str_limit($one_news->description, 200)}}</p>

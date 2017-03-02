@@ -2,9 +2,6 @@
 
 @section ('content')
 
-    <!-- Page Content -->
-    <div class="container">
-
 	<!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
@@ -22,7 +19,7 @@
         <div class="row">
             <div class="col-md-3">
 				<br><br>
-                <img class="img-responsive" src="images/logo.jpg" alt="">
+                <img class="img-responsive center-block" src="images/logo.jpg" alt="">
             </div>
             <div class="col-md-9">
                 <h2>Мариупольская федерация УШУ</h2>

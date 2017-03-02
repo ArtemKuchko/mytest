@@ -2,10 +2,6 @@
 
 @section ('content')
 
-
-    <!-- Page Content -->
-    <div class="container">
-
     <!-- Page Heading/Breadcrumbs -->
     <div class="row">
         <div class="col-lg-12">
@@ -29,9 +25,10 @@
                 </p>
                 <p>June 17, 2014</p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 text-center">
                 <a href="{{ url('/videos_'. $folder->id) }}">
-                    <img class="img-responsive img-hover" height="300px" width="500px"  src="{{'images/videofolders/' . $folder->image_path}}" alt="">
+                    {{--<img class="img-responsive img-hover" height="300px" width="500px"  src="{{'images/videofolders/' . $folder->image_path}}" alt="">--}}
+					<img src="{{'images/videofolders/' . $folder->image_path}}" class="img-thumbnail" alt="" width="400" height="500">
                 </a>
             </div>
             <div class="col-md-4">

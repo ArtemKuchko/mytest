@@ -2,9 +2,6 @@
 
 @section('content')
 
-	<!-- Page Content -->
-    <div class="container">
-
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -41,13 +38,13 @@
                     <abbr title="Hours"></abbr>: Понедельник - Суббота: с 8:00 до 19:00</p>
                 <ul class="list-unstyled list-inline list-social-icons">
                     <li>
-                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-vk fa-2x"></i></a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
