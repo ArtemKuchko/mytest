@@ -21,4 +21,13 @@ class VideoController extends Controller
 		return view('videos', ['videos' => $videos, 'folder' => $folder]);
     	
     }
+	
+	public function showOne($id)
+	{
+		
+		
+		
+	}
+
+	
 }

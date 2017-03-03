@@ -3,8 +3,9 @@
 @section ('head')
 	
 	@parent
-	
+
 	<style>
+		/*
 		.video {
 			height: 0;
 			position: relative;
@@ -16,7 +17,8 @@
 			top: 0;
 			width: 100%;
 			height: 100%;
-		}
+		}*/
+
 	</style>
 
 @endsection
@@ -39,88 +41,61 @@
 			</div>
 		</div>
 		<!-- /.row -->
-	
+		
+		
 		<div class="row">
-			<div class="col-md-4">
-				<video controls="controls" height="400px">
-					<source src="videos/1/1.mp4" type="video/mp4">
-				</video>
+            <div class="col-md-8 text-center">
+				<embed src="videos/1/1.mp4" height="360" width="640">
 			</div>
-			
+			<div class="col-md-4">
+				<h3>{{ $videos[0]-> name }}</h3>
+					<p>{{ $folder->description }}</p>
+					<h3>Project Details</h3>
+					<ul>
+						<li>Lorem Ipsum</li>
+						<li>Dolor Sit Amet</li>
+						<li>Consectetur</li>
+						<li>Adipiscing Elit</li>
+					</ul>
+			</div>
 		</div>
 		
+		<hr>
+		
         <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project One</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <video controls="controls" height="400px">
-						<source src="videos/1/1.mp4" type="video/mp4">
-					</video>
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Two</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
+		<div class="row">
+			
+			
+				@foreach ($videos as $video)
+				<div class="col-lg-3">
+					<a href="#" class="thumbnail" >
+					  <img width="250px" src="{{ 'images/videos/' . $folder->id . '/' . $loop->iteration . '.jpg' }}" alt="...">
+					</a>
+				</div>
+				@endforeach
+									
+			
+		</div>
+			
+		<!--<div class="col-md-6 img-portfolio">
+			<p>Iframe:</p>
+			<iframe width="420" height="315" src="videos/1/1.mp4"> </iframe>
+		</div>
+		
+		<div class="col-md-6 img-portfolio">
+			<p>Object:</p>
+			<object width="420" height="315" data="videos/1/1.mp4"></object>
+
+		</div>
+		
+		<div class="col-md-6 img-portfolio">
+			<p>Embed:</p>
+			<embed src="videos/1/1.mp4" autostart="false" height="300" width="500" type="audio/mpeg/">
+
+		</div>-->
         <!-- /.row -->
 
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Three</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Four</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Five</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-            <div class="col-md-6 img-portfolio">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                    <a href="portfolio-item.html">Project Six</a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
+        
 
         <!-- Pagination -->
         <div class="row text-center">
@@ -152,6 +127,4 @@
         </div>
         <!-- /.row -->
 		
-		
-
 @endsection
