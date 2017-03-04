@@ -57,62 +57,6 @@
 						</li>
 					@endforeach
 
-                    <!--<li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-1"><img src="http://placehold.it/150x150&text=1"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-2"><img src="http://placehold.it/150x150&text=2"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-3"><img src="http://placehold.it/150x150&text=3"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-4"><img src="http://placehold.it/150x150&text=4"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-5"><img src="http://placehold.it/150x150&text=5"></a>
-                    </li>
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-6"><img src="http://placehold.it/150x150&text=6"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-7"><img src="http://placehold.it/150x150&text=7"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-8"><img src="http://placehold.it/150x150&text=8"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-9"><img src="http://placehold.it/150x150&text=9"></a>
-                    </li>
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-10"><img src="http://placehold.it/150x150&text=10"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-11"><img src="http://placehold.it/150x150&text=11"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-12"><img src="http://placehold.it/150x150&text=12"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-13"><img src="http://placehold.it/150x150&text=13"></a>
-                    </li>
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-14"><img src="http://placehold.it/150x150&text=14"></a>
-                    </li>
-
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-15"><img src="http://placehold.it/150x150&text=15"></a>
-                    </li>-->
                 </ul>
             </div>
             <div class="col-sm-6">
@@ -129,55 +73,11 @@
 										
 									@for($i=1; $i<count($photos); $i++)
 										<div class="item" data-slide-number="{{ $i }}">
-											<img src="{{ 'http://placehold.it/470x480&text='. $i }}"></div>
+											<img src="{{ 'images/photos/'. $folder->id .'/'.$photo->image_path }}"></div>
+
+										{{--{{'images/photofolders/' . $folder->image_path}}--}}
 								
 									@endfor
-
-                                    <!--<div class="item" data-slide-number="1">
-                                        <img src="http://placehold.it/470x480&text=1"></div>
-
-                                    <div class="item" data-slide-number="2">
-                                        <img src="http://placehold.it/470x480&text=2"></div>
-
-                                    <div class="item" data-slide-number="3">
-                                        <img src="http://placehold.it/470x480&text=3"></div>
-
-                                    <div class="item" data-slide-number="4">
-                                        <img src="http://placehold.it/470x480&text=4"></div>
-
-                                    <div class="item" data-slide-number="5">
-                                        <img src="http://placehold.it/470x480&text=5"></div>
-                                    
-                                    <div class="item" data-slide-number="6">
-                                        <img src="http://placehold.it/470x480&text=6"></div>
-                                    
-                                    <div class="item" data-slide-number="7">
-                                        <img src="http://placehold.it/470x480&text=7"></div>
-                                    
-                                    <div class="item" data-slide-number="8">
-                                        <img src="http://placehold.it/470x480&text=8"></div>
-                                    
-                                    <div class="item" data-slide-number="9">
-                                        <img src="http://placehold.it/470x480&text=9"></div>
-                                    
-                                    <div class="item" data-slide-number="10">
-                                        <img src="http://placehold.it/470x480&text=10"></div>
-                                    
-                                    <div class="item" data-slide-number="11">
-                                        <img src="http://placehold.it/470x480&text=11"></div>
-                                    
-                                    <div class="item" data-slide-number="12">
-                                        <img src="http://placehold.it/470x480&text=12"></div>
-
-                                    <div class="item" data-slide-number="13">
-                                        <img src="http://placehold.it/470x480&text=13"></div>
-
-                                    <div class="item" data-slide-number="14">
-                                        <img src="http://placehold.it/470x480&text=14"></div>
-
-                                    <div class="item" data-slide-number="15">
-                                        <img src="http://placehold.it/470x480&text=15"></div>-->
-										
 										
                                 </div>
                                 <!-- Carousel nav -->
