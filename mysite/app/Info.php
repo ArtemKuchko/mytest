@@ -4,8 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VideoFolder extends Model
+class Info extends Model
 {
     //
-	protected $table = 'videofolders';
+	protected $table = 'info';
+	
+	
 }

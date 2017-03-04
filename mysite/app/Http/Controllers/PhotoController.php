@@ -17,7 +17,7 @@ class PhotoController extends Controller
 
         $folder =PhotoFolder::find($folder_id);
 
-		return view('photos_test', ['photos' => $photos, 'folder' => $folder]);
+		return view('photos', ['photos' => $photos, 'folder' => $folder]);
     	
 		//return view('photos', ['photos' => $photos, 'folder' => $folder]);
     }

@@ -11,6 +11,7 @@
 		<meta name="author" content="">
 
 		<title>Мариуполь - УШУ</title>
+		<link rel="shortcut icon" href="images/small_logo.ico" />
 
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +36,7 @@
 
 @section ('navbar')
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -45,8 +46,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{url ('/')}}">Мариупольская федерация УШУ</a>
-        </div>
+            <a class="navbar-brand" href="{{url ('/')}}" style="font-size:20pt;">
+				УШУ Мариуполь
+			</a>
+        
+		
+		</div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
@@ -56,17 +61,30 @@
                 <li>
                     <a href="{{url ('/news')}}">Новости</a>
                 </li>
-                <li>
-                    <a href="{{url ('/photofolders_1')}}">Фотогалерея</a>
-                </li>
-                <li>
-                    <a href="{{url ('/videofolders_1')}}">Видеогалерея</a>
+                <li>                  
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Галерея <b class="caret"></b></a>					
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{url ('/photofolders')}}">Фотогалерея</a>
+							</li>
+							<li>
+								<a href="{{url ('/videofolders')}}">Видеогалерея</a>
+							</li>
+						</ul>
                 </li>
                 <li>
                     <a href="{{url ('/contact')}}">Контакты</a>
                 </li>
                 <li>
-                    <a href="{{url ('/wushu')}}">Ушу</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Ушу <b class="caret"></b></a>					
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{url ('/sanda')}}">Саньда</a>
+							</li>
+							<li>
+								<a href="{{url ('/taolu')}}">Таолу</a>
+							</li>
+						</ul>
                 </li>
             </ul>
         </div>
@@ -77,151 +95,38 @@
 
 @show
 
-@section('content')
-<!-- Header Carousel -->
-<header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <div class="item active">
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 1</h2>
-            </div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 2</h2>
-            </div>
-        </div>
-        <div class="item">
-            <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
-            <div class="carousel-caption">
-                <h2>Caption 3</h2>
-            </div>
-        </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="icon-prev"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="icon-next"></span>
-    </a>
-</header>
+@yield ('carousel')
 
 <!-- Page Content -->
 <div class="container">
 
-    <!-- Marketing Icons Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Добро пожаловать на сайт Мариупольской федерации УШУ!
-            </h1>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-check"></i> Bootstrap v3.3.7</h4>
-                </div>
-                <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                    <a href="#" class="btn btn-default">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-gift"></i> Free &amp; Open Source</h4>
-                </div>
-                <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                    <a href="#" class="btn btn-default">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-compass"></i> Easy to Use</h4>
-                </div>
-                <div class="panel-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
-                    <a href="#" class="btn btn-default">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
+@section('content')
 
-    <!-- Portfolio Section -->
-    {{--<div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Portfolio Heading</h2>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-    </div>
-    --}}<!-- /.row -->
-
+@yield ('info')
+    
     <!-- Features Section -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header">Modern Business Features</h2>
+            <h2 class="page-header">Присоединяйтесь к нам</h2>
         </div>
         <div class="col-md-6">
-            <p>The Modern Business template by Start Bootstrap includes:</p>
-            <ul>
-                <li><strong>Bootstrap v3.3.7</strong>
-                </li>
-                <li>jQuery v1.11.1</li>
-                <li>Font Awesome v4.2.0</li>
-                <li>Working PHP contact form with validation</li>
-                <li>Unstyled page elements for easy customization</li>
-                <li>17 HTML pages</li>
-            </ul>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+            
+			<br>
+			<p>Мариупольская федерация УШУ ведет набор в группы по следующим направлениям УШУ:</p>
+				
+			<p>УШУ-САНЬДА – это вид противоборства, заключающийся в том, что, два соперника, используя руки, ноги, броски, падения и прочие технические действия,
+			в соответствии с определенными правилами, проводят рукопашную схватку. А также в программе обучения общефизическая подготовка, акробатические, дыхательные
+			и медитативные упражнения.</p>
+			
+			<p>УШУ – ТАОЛУ – это спортивные выступления без оружия и с классическим оружием, демонстрация традиционных видов ушу без оружия и с оружием. Также в 
+			программе обучения общефизическая подготовка, акробатические, дыхательные и медитативные упражнения. Тренировки подходят как для мальчиков, так и для девочек. </p>
+			
+			<p>В нашей школе все воспитанники разделены по возрастным группам. Группа юных спортсменов 6-7 лет, группы среднего и старшего возрастов. Занятия проходят в 
+			соответствии с физическими и психологическими особенностями каждой возрастной группы.</p>
+		
         </div>
         <div class="col-md-6">
-            <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+            <img class="img-responsive" src="images/monk.jpg" alt="">
         </div>
     </div>
     <!-- /.row -->
@@ -232,13 +137,14 @@
     <div class="well">
         <div class="row">
             <div class="col-md-8">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+                <p>Если у Вас возникли какие-либо впросы, Вы всегда можете связаться с нами</p>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
+                <a class="btn btn-lg btn-default btn-block" href="{{ url('/contact') }}">Связаться</a>
             </div>
         </div>
     </div>
+
 @show
 
     <hr>
