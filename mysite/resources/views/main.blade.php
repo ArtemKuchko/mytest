@@ -47,7 +47,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{url ('/')}}" style="font-size:20pt;">
-				УШУ Мариуполь
+				Мариупольская федерация Ушу
 			</a>
         
 		
@@ -137,10 +137,10 @@
     <div class="well">
         <div class="row">
             <div class="col-md-8">
-                <p>Если у Вас возникли какие-либо впросы, Вы всегда можете связаться с нами</p>
+                <p>Если у Вас возникли какие-либо вопросы, Вы всегда можете связаться с нами</p>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-lg btn-default btn-block" href="{{ url('/contact') }}">Связаться</a>
+                <a class="btn btn-lg btn-primary btn-block" href="{{ url('/contact') }}">Оставить сообщение</a>
             </div>
         </div>
     </div>

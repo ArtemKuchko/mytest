@@ -27,6 +27,12 @@ Route::get('/videofolders', 'VideoFolderController@index');
 Route::get('/videofolders_{page}', 'VideoFolderController@show');
 Route::get('/videos_{id}', 'VideoController@show');
 
+Route::get('/events', 'InfoController@showEvents');
+Route::get('/congratulations', 'InfoController@showCongrats');
+Route::get('/infos', 'InfoController@showInfos');
+
+
+
 Route::get('/test', function () {
     return view('test_git');
 });

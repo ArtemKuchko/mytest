@@ -65,10 +65,13 @@
         <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4><i class="fa fa-fw fa-calendar"></i> Ближайшее мероприятие </h4>
+                    <h4>
+                        <i class="fa fa-fw fa-calendar"></i> Ближайшее мероприятие
+                    </h4>
                 </div>
                 <div class="panel-body fixed-panel">
                     <p>{{ str_limit($last_i['event']->name, 100) }}</p>
+                    <a href="{{ url('/events') }}" class="btn btn-default">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -79,6 +82,7 @@
                 </div>
                 <div class="panel-body fixed-panel">
                     <p>{{ str_limit($last_i['congratulation']->name, 100) }}</p>
+                    <a href="{{ url('/congratulations') }}" class="btn btn-default">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -89,6 +93,7 @@
                 </div>
                 <div class="panel-body fixed-panel">
                     <p>{{ str_limit($last_i['info']->name, 100)}}</p>
+                    <a href="{{ url('/info') }}" class="btn btn-default">Подробнее</a>
                 </div>
             </div>
         </div>
