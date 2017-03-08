@@ -39,7 +39,7 @@ Route::get('/test', function () {
 
 Route::get ('/about', function () {
 		return view ('about');	
-});
+})->middleware('auth');
 
 Route::get ('/contact', function () {
 		return view ('contact');	
@@ -52,3 +52,15 @@ Route::get ('/sanda', function () {
 Route::get ('/taolu', function () {
 		return view ('taolu');	
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
+	return "this page requires that you be logged in and an Admin";
+}]);
+
+Route::get('/admin', ['middleware' => ['auth', 'admin'], function () {
+	return view('admin.admin_panel');
+}]);
