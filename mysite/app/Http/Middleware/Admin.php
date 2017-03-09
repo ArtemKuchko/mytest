@@ -20,11 +20,18 @@ class Admin
     {
         if ( Auth::check() && Auth::user()->isAdmin() )
         {
-            return $next($request);
+            //return redirect ('/admin');
+			return $next($request);
         }
+		else
+		{
+			return redirect ('/login');
+		}
 
         //return $next($request);
-        return redirect('/admin');
+        //return redirect('/admin');
+		
+		//return redirect('/about');
 
     }
 }
