@@ -57,20 +57,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-/*Route::get('protected', ['middleware' => ['auth', 'admin'], function() {
-	return "this page requires that you be logged in and an Admin";
-}]);*/
+Route::group(['middleware' => 'admin'], function () {
 
-/*Route::get('/admin', ['middleware' => ['auth', 'admin'], function () {
-	return view('admin.admin_panel');
-}]);*/
-
-Route::get('/admin', function (){
+	Route::get('/admin', function () {
 		return view('admin.admin_panel');
-})->middleware('admin');
+	});
+	Route::get('/admin_news', function () {
+		return view('admin.admin_news');
+	});
+	Route::get('/admin_photogallery', function () {
+		return view('admin.admin_photogallery');
+	});
+	Route::get('/admin_videogallery', function () {
+		return view('admin.admin_videogallery');
+	});
+	Route::get('/admin_events', function () {
+		return view('admin.admin_events');
+	});
+	Route::get('/admin_congrats', function () {
+		return view('admin.admin_congrats');
+	});
+	Route::get('/admin_infos', function () {
+		return view('admin.admin_infos');
+	});
 
-Route::get('/admin_news', function (){
-		return view('admin.admin_news');	
-})->middleware('admin');
-
-
+});

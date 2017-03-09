@@ -11,14 +11,12 @@
             <div class="col-md-3">
                 <div class="list-group">
                     <a href="{{ url('/admin_news') }}" class="list-group-item">Новости</a>
-                    <a href="#" class="list-group-item">Фотогалерея</a>
-                    <a href="#" class="list-group-item">Видеогалерея</a>
-                    <a href="#" class="list-group-item">Контакты</a>
-                    <a href="#" class="list-group-item">О нас</a>
-					<a href="#" class="list-group-item">Саньда</a>
-                    <a href="#" class="list-group-item">Таолу</a>
-                    
-                    
+                    <a href="{{ url('/admin_photogallery') }}" class="list-group-item">Фотогалерея</a>
+                    <a href="{{ url('/admin_videogallery') }}" class="list-group-item">Видеогалерея</a>
+                    <a href="{{ url('/admin_events') }}" class="list-group-item">События</a>
+                    <a href="{{ url('/admin_congrats') }}" class="list-group-item">Поздравления</a>
+					<a href="{{ url('/admin_infos') }}" class="list-group-item">Информация</a>
+
                 </div>
             </div>
             <!-- Content Column -->			
