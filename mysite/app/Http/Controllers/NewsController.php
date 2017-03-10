@@ -6,9 +6,11 @@ use App\News;
 
 use Illuminate\Http\Request;
 
+use DB;
+
 class NewsController extends Controller
 {
-
+	
     public function index()
     {
         $news = News::all();
@@ -24,5 +26,29 @@ class NewsController extends Controller
         return view ('one_news', ['one_news' => $one_news]);
 
     }
-
+	
+	public function store(Request $request)
+	{
+		$news = new News;
+		
+		$news->name = $request->name;
+		$news->description = $request->description;
+		$news->image_path = 'test.jpg';
+		
+		$news-> save();
+		
+		return redirect('/admin_news');
+	}
+	
+	public function showAdmin()
+	{
+		$news = News::all();
+		
+		return view('admin.admin_news', ['news' => $news]);
+		
+	}
+	
+	
+	
+	
 }

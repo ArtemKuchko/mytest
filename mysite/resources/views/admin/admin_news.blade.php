@@ -4,31 +4,38 @@
 
 	<h2>Новости</h2>
 	<p> Добавление, редактирование, удаление новостей</p>
+	
+	<a class="btn btn-primary" href="{{ url('/admin_news_add') }}">Добавить новость<i class="fa fa-angle-right"></i></a>
 
-	<form name="sentMessage" id="contactForm" novalidate>
-		<div class="control-group form-group">
-			<div class="controls">
-				<label>Название:</label>
-				<input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-				<p class="help-block"></p>
-			</div>
-		</div>
-		<div class="control-group form-group">
-			<div class="controls">
-				<label>Загрузить фото:</label>
-				<input type="file" class="form-control" id="phone" required>
-			</div>
-		</div>
-
-		<div class="control-group form-group">
-			<div class="controls">
-				<label>Описание:</label>
-				<textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
-			</div>
-		</div>
-		<div id="success"></div>
-		<!-- For success/fail messages -->
-		<button type="submit" class="btn btn-primary">Send Message</button>
-	</form>
+	<p></p>
+	
+	@if (count($news)>0)
+		
+		<table class="table table-bordered table-striped"> 
+			<thead> 
+				<tr> 
+					<th>#</th> 
+					<th>Название</th>
+					<th>Просмотр</th>
+					<th>Редактирование</th>
+					<th>Удаление</th>
+				</tr>
+				
+			</thead> 
+			<tbody>
+				@foreach($news as $one)
+				<tr>
+					<td>{{ $loop->iteration }}</td>
+					<td>{{ $one->name }}</td>
+					<td><a class="btn btn-success" href="#" role="button">Просмотр</a></td>
+					<td><a class="btn btn-default" href="#" role="button">Редактировать</a></td>
+					<td><a class="btn btn-danger" href="#" role="button">Удалить</a></td>
+				</tr>
+				@endforeach
+				
+			</tbody> 
+		</table>
+		
+	@endif
 				
 @endsection

@@ -11,9 +11,6 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('main');
-});*/
 Route::get('/', 'MainController@index');
 
 Route::get('/news', 'NewsController@index');
@@ -55,16 +52,31 @@ Route::get ('/taolu', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/register', function (){
+	return redirect ('/login');
+	
+});
+
+//Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'admin'], function () {
 
 	Route::get('/admin', function () {
 		return view('admin.admin_panel');
 	});
-	Route::get('/admin_news', function () {
+	
+	/*Route::get('/admin_news', function () {
 		return view('admin.admin_news');
+	});*/
+	
+	Route::get('/admin_news', 'NewsController@showAdmin');
+	
+	Route::get('/admin_news_add', function () {
+		return view('admin.admin_news_add');
 	});
+	
+	Route::post('/admin_news_add', 'NewsController@store');
+	
 	Route::get('/admin_photogallery', function () {
 		return view('admin.admin_photogallery');
 	});
@@ -80,5 +92,6 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin_infos', function () {
 		return view('admin.admin_infos');
 	});
+	
 
 });
