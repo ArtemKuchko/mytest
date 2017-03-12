@@ -30,13 +30,10 @@ class NewsController extends Controller
 	public function store(Request $request)
 	{
 		$news = new News;
-		
 		$news->name = $request->name;
 		$news->description = $request->description;
 		$news->image_path = 'test.jpg';
-		
 		$news-> save();
-		
 		return redirect('/admin_news');
 	}
 	

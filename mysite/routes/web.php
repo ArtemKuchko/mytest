@@ -64,11 +64,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin', function () {
 		return view('admin.admin_panel');
 	});
-	
-	/*Route::get('/admin_news', function () {
-		return view('admin.admin_news');
-	});*/
-	
+
 	Route::get('/admin_news', 'NewsController@showAdmin');
 	
 	Route::get('/admin_news_add', function () {
@@ -76,10 +72,17 @@ Route::group(['middleware' => 'admin'], function () {
 	});
 	
 	Route::post('/admin_news_add', 'NewsController@store');
-	
-	Route::get('/admin_photogallery', function () {
-		return view('admin.admin_photogallery');
+
+	Route::get('/admin_photogallery', 'PhotoFolderController@showAdmin');
+
+	Route::get('/admin_photofolder_add', function () {
+		return view('admin.admin_photofolder_add');
 	});
+
+	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');
+
+	Route::get('/admin_photofolder_edit_{id}', 'PhotoFolderController@edit');
+
 	Route::get('/admin_videogallery', function () {
 		return view('admin.admin_videogallery');
 	});

@@ -36,7 +36,30 @@ class PhotoFolderController extends Controller
 		$photofolders = DB::table('photofolders')->offset($offset)->limit($one_page)->get();
 
 		return view ('photofolders', ['photofolders' => $photofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
-
     }
+
+	public function store(Request $request)
+	{
+		$photofolder = new PhotoFolder();
+		$photofolder->name = $request->name;
+		$photofolder->description = $request->description;
+		$photofolder->image_path = 'test.jpg';
+		$photofolder-> save();
+		return redirect('/admin_photogallery');
+	}
+
+	public function showAdmin()
+	{
+		$photofolders = PhotoFolder::all();
+
+		return view('admin.admin_photogallery', ['photofolders' => $photofolders]);
+	}
+
+	public function edit($id)
+	{
+		$folder = PhotoFolder::where('id', $id)->get();
+
+		return view('admin.admin_photofolder_edit', ['folder' => $folder[0]]);
+	}
 
 }
