@@ -95,6 +95,12 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin_infos', function () {
 		return view('admin.admin_infos');
 	});
+
+	Route::get('/admin_test', function() {
+		return view('admin.admin_test');
+	});
+
+	Route::post('/file_upload', 'PhotoFolderController@test');
 	
 
 });

@@ -62,4 +62,14 @@ class PhotoFolderController extends Controller
 		return view('admin.admin_photofolder_edit', ['folder' => $folder[0]]);
 	}
 
+	public function test()
+	{
+		error_reporting(E_ALL | E_STRICT);
+		require('UploadHandler.php');
+		$upload_handler = new UploadHandler(array(
+
+				'download_via_php' => true
+		));
+	}
+
 }
