@@ -46,8 +46,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{url ('/')}}" style="font-size:20pt;">
-				Мариупольская федерация Ушу
+            <a class="navbar-brand" href="{{url ('/')}}">
+			Мариупольская федерация Ушу
+				<!--<img src="images/logo_class.png" class="img-responsive" width="50px">-->
 			</a>
         
 		

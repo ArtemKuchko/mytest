@@ -29,10 +29,10 @@ Route::get('/congratulations', 'InfoController@showCongrats');
 Route::get('/infos', 'InfoController@showInfos');
 
 
-
-Route::get('/test', function () {
+Route::get('/test', 'TestController@index');
+/*Route::get('/test', function () {
     return view('test_git');
-});
+});*/
 
 Route::get ('/about', function () {
 		return view ('about');	
