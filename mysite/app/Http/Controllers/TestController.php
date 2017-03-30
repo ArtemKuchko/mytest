@@ -11,79 +11,43 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-		$a = array(10,20,30,40,50);
-		
-		dd($a);
-		
-		
+        return view ('admin.admin_test2');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //	
+		//$request->file('myfile')->store('myfiles');
+		
+		$file = $request->file('myfile');
+		
+		//$ext = $file ->guessClientExtension();
+		
+		$name = $file->getClientOriginalName();
+		$ext = $file->getClientOriginalExtension();
+		//$file->getSize();
+		
+		$file ->storeAs('myfiles', "{$name}.{$ext}");
+		
+		
+		
+		return back();
+		
     }
+	
+	 
+	  public function delete($id)
+		{
+			$upload = Upload::find($id);
+			$upload->delete();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+			$success = new stdClass();
+			$success->{$upload->filename} = true;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+			return Response::json(array('files'=> array($success)), 200);
+		}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -24,15 +24,12 @@ Route::get('/videofolders', 'VideoFolderController@index');
 Route::get('/videofolders_{page}', 'VideoFolderController@show');
 Route::get('/videos_{id}', 'VideoController@show');
 
-Route::get('/events', 'InfoController@showEvents');
-Route::get('/congratulations', 'InfoController@showCongrats');
-Route::get('/infos', 'InfoController@showInfos');
+Route::get('/events', 'InfoController@show');
+Route::get('/congratulations', 'InfoController@show');
+Route::get('/info', 'InfoController@show');
 
 
 Route::get('/test', 'TestController@index');
-/*Route::get('/test', function () {
-    return view('test_git');
-});*/
 
 Route::get ('/about', function () {
 		return view ('about');	
@@ -100,7 +97,11 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_test');
 	});
 
-	Route::post('/file_upload', 'PhotoFolderController@test');
+	Route::post('/file_upload', 'TestController@store');
 	
 
 });
+
+Route::get('/see_files', 'TestController@index');
+
+Route::post('/file_check', 'TestController@store');

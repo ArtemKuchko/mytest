@@ -48,6 +48,7 @@
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
+				
                 <input type="checkbox" class="toggle">
                 <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
@@ -120,6 +121,9 @@
 					{% } else { %}
 						<span>{%=file.name%}</span>
 					{% } %}
+					{% if (file.fileID) { %}
+                    <input class="upload-field-ids" type="hidden" name="fileid[]" value="{%=file.fileID%}">
+                {% } %}
 				</p>
 				{% if (file.error) { %}
 					<div><span class="label label-danger">Error</span> {%=file.error%}</div>

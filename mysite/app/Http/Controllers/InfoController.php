@@ -17,17 +17,22 @@ class InfoController extends Controller
         if ($name_uri == 'events')
         {
             $temps = Info::where('type', 'e')->get();
+			$title='События';
         }
-        elseif ($name_uri == 'congrats')
+        elseif ($name_uri == 'congratulations')
         {
             $temps = Info::where('type', 'c')->get();
-        }
-        elseif ($name_uri == 'infos')
+			$title='Поздравления';
+		}
+        elseif ($name_uri == 'info')
         {
             $temps = Info::where('type', 'i')->get();
+			$title='Информация';
         }
 
-        return view($name_uri, [$name_uri => $temps]);
+		//dd($temps);
+        return view('info', ['temps' => $temps, 'title' => $title]);
+		//return view($name_uri, [$name_uri => $temps]);
     }
-
+	
 }

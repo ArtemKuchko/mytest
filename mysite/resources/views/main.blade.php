@@ -141,7 +141,7 @@
                 <p>Если у Вас возникли какие-либо вопросы, Вы всегда можете связаться с нами</p>
             </div>
             <div class="col-md-4">
-                <a class="btn btn-lg btn-primary btn-block" href="{{ url('/contact') }}">Оставить сообщение</a>
+                <a class="btn btn-lg btn-primary btn-block" href="{{ url('/contact#message') }}">Оставить сообщение</a>
             </div>
         </div>
     </div>
