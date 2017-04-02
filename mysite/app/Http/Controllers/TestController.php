@@ -13,11 +13,22 @@ class TestController extends Controller
      */
     public function index(Request $request)
     {
-        return view ('admin.admin_test2');
 
+		return view('test');
     }
 
-    public function store(Request $request)
+	public function upload(Request $request)
+	{
+
+		error_reporting(E_ALL | E_STRICT);
+		require __DIR__.'/libraries/UploadHandler.php';
+		$upload_handler = new UploadHandler(array(
+
+				'download_via_php' => true
+		));
+	}
+
+   /* public function store(Request $request)
     {
         //	
 		//$request->file('myfile')->store('myfiles');
@@ -36,10 +47,10 @@ class TestController extends Controller
 		
 		return back();
 		
-    }
+    }*/
 	
 	 
-	  public function delete($id)
+	  /*public function delete($id)
 		{
 			$upload = Upload::find($id);
 			$upload->delete();
@@ -48,6 +59,6 @@ class TestController extends Controller
 			$success->{$upload->filename} = true;
 
 			return Response::json(array('files'=> array($success)), 200);
-		}
+		}*/
 
 }

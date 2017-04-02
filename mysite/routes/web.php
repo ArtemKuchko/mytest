@@ -30,6 +30,7 @@ Route::get('/info', 'InfoController@show');
 
 
 Route::get('/test', 'TestController@index');
+Route::post('/upload_test', 'TestController@upload');
 
 Route::get ('/about', function () {
 		return view ('about');	
@@ -54,7 +55,6 @@ Route::get('/register', function (){
 	
 });
 
-//Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'admin'], function () {
 
@@ -101,7 +101,3 @@ Route::group(['middleware' => 'admin'], function () {
 	
 
 });
-
-Route::get('/see_files', 'TestController@index');
-
-Route::post('/file_check', 'TestController@store');

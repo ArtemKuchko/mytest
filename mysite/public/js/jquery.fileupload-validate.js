@@ -6,7 +6,7 @@
  * https://blueimp.net
  *
  * Licensed under the MIT license:
- * https://opensource.org/licenses/MIT
+ * http://www.opensource.org/licenses/MIT
  */
 
 /* global define, require, window */
@@ -16,7 +16,7 @@
     if (typeof define === 'function' && define.amd) {
         // Register as an anonymous AMD module:
         define([
-            'jquery',
+            'jquery.fileupload',
             './jquery.fileupload-process'
         ], factory);
     } else if (typeof exports === 'object') {

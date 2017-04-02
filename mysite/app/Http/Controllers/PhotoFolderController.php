@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 
 use App\PhotoFolder;
 
+
 use DB;
+use Storage;
+
 
 class PhotoFolderController extends Controller
 {
@@ -40,11 +44,17 @@ class PhotoFolderController extends Controller
 
 	public function store(Request $request)
 	{
+
 		$photofolder = new PhotoFolder();
 		$photofolder->name = $request->name;
 		$photofolder->description = $request->description;
-		$photofolder->image_path = 'test.jpg';
+
+		$imageName = time().'.'.$request->myfile->getClientOriginalExtension();
+		$photofolder->image_path = $imageName;
+		$request->myfile->move(public_path('uploads'), $imageName);
+
 		$photofolder-> save();
+
 		return redirect('/admin_photogallery');
 	}
 
@@ -62,14 +72,5 @@ class PhotoFolderController extends Controller
 		return view('admin.admin_photofolder_edit', ['folder' => $folder[0]]);
 	}
 
-	public function test()
-	{
-		error_reporting(E_ALL | E_STRICT);
-		require('../UploadHandler.php');
-		$upload_handler = new UploadHandler(array(
-
-				'download_via_php' => true
-		));
-	}
 
 }
