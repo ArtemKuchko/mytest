@@ -13,8 +13,10 @@ class TestController extends Controller
      */
     public function index(Request $request)
     {
-
-		return view('test');
+		
+		$temp = public_path().'/images/photofolders';
+		dd($temp);
+//		return view('test');
     }
 
 	public function upload(Request $request)

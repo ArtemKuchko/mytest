@@ -2,9 +2,10 @@
 
 @section ('input')
 
-	<h2>Добавление новости</h2>
+	<h2>Добавление - {{ $title }}
+	</h2>
 	
-	<form action="{{ url('/admin_news_add') }}" method="post" id="contactForm" enctype="multipart/form-data">
+	<form action="{{ url('/admin_'.$folder.'_add') }}" method="post" id="contactForm" enctype="multipart/form-data">
 	
 	{{ csrf_field() }}
 	

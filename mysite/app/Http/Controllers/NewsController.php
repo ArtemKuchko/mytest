@@ -32,7 +32,11 @@ class NewsController extends Controller
 		$news = new News;
 		$news->name = $request->name;
 		$news->description = $request->description;
-		$news->image_path = 'test.jpg';
+		
+		$imageName =time().'.'. $request->myfile->getClientOriginalExtension();
+		$news->image_path = $imageName;
+		$request->myfile->move(public_path().'/images/news/', $imageName);
+		
 		$news-> save();
 		return redirect('/admin_news');
 	}

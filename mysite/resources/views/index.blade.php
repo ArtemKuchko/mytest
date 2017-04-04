@@ -82,7 +82,7 @@
                 </div>
                 <div class="panel-body fixed-panel">
                     <p>{{ str_limit($last_i['congratulation']->name, 100) }}</p>
-                    <a href="{{ url('/congratulations') }}" class="btn btn-default">Подробнее</a>
+                    <a href="{{ url('/congrats') }}" class="btn btn-default">Подробнее</a>
                 </div>
             </div>
         </div>

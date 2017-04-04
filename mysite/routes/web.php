@@ -25,7 +25,7 @@ Route::get('/videofolders_{page}', 'VideoFolderController@show');
 Route::get('/videos_{id}', 'VideoController@show');
 
 Route::get('/events', 'InfoController@show');
-Route::get('/congratulations', 'InfoController@show');
+Route::get('/congrats', 'InfoController@show');
 Route::get('/info', 'InfoController@show');
 
 
@@ -83,15 +83,19 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin_videogallery', function () {
 		return view('admin.admin_videogallery');
 	});
-	Route::get('/admin_events', function () {
-		return view('admin.admin_events');
-	});
-	Route::get('/admin_congrats', function () {
-		return view('admin.admin_congrats');
-	});
-	Route::get('/admin_infos', function () {
-		return view('admin.admin_infos');
-	});
+	
+	Route::get('/admin_events', 'InfoController@showAdmin');
+	Route::get('/admin_congrats', 'InfoController@showAdmin');
+	Route::get('/admin_infos', 'InfoController@showAdmin');
+	
+	///admin_events_add
+	Route::get('/admin_infos_add', 'InfoController@addAdmin');
+	Route::get('/admin_events_add', 'InfoController@addAdmin');
+	Route::get('/admin_congrats_add', 'InfoController@addAdmin');
+	
+	Route::post('/admin_events_add', 'InfoController@store');
+	Route::post('/admin_congrats_add', 'InfoController@store');
+	Route::post('/admin_infos_add', 'InfoController@store');
 
 	Route::get('/admin_test', function() {
 		return view('admin.admin_test');
