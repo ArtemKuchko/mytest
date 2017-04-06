@@ -14,43 +14,16 @@ class TestController extends Controller
     public function index(Request $request)
     {
 		
-		$temp = public_path().'/images/photofolders';
-		dd($temp);
-//		return view('test');
+		$stroka = '1,2,3,4,5,6,7';
+		$temp = 0;
+		
+		for ($i=0; $i < strlen($stroka); $i++)
+		{
+			$temp+= $stroka[$i];
+		}
+		
+		echo $temp;
     }
-
-	public function upload(Request $request)
-	{
-
-		error_reporting(E_ALL | E_STRICT);
-		require __DIR__.'/libraries/UploadHandler.php';
-		$upload_handler = new UploadHandler(array(
-
-				'download_via_php' => true
-		));
-	}
-
-   /* public function store(Request $request)
-    {
-        //	
-		//$request->file('myfile')->store('myfiles');
-		
-		$file = $request->file('myfile');
-		
-		//$ext = $file ->guessClientExtension();
-		
-		$name = $file->getClientOriginalName();
-		$ext = $file->getClientOriginalExtension();
-		//$file->getSize();
-		
-		$file ->storeAs('myfiles', "{$name}.{$ext}");
-		
-		
-		
-		return back();
-		
-    }*/
-	
 	 
 	  /*public function delete($id)
 		{

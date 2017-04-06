@@ -16,6 +16,7 @@
             <tr>
                 <th>#</th>
                 <th>Название</th>
+				<th>Фотографии</th>
                 <th>Редактировать</th>
                 <th>Удаление</th>
             </tr>
@@ -25,8 +26,10 @@
             @foreach($photofolders as $folder)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $folder->name }}</td>
-                    <td><a class="btn btn-success" href="{{ url('admin_photofolder_edit_'. $folder->id) }}" role="button">Редактирование</a></td>
+					
+					<td>{{ $folder->name }}</td>
+					<td><a class="btn btn-success" href="{{ url('/admin_photos_add') }}" role="button">Фотографии</a></td>
+                    <td><a class="btn btn-default" href="{{ url('admin_photofolder_edit_'. $folder->id) }}" role="button">Редактирование</a></td>
                     <td><a class="btn btn-danger" href="#" role="button">Удалить</a></td>
                 </tr>
             @endforeach

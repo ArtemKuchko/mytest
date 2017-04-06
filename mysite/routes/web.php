@@ -62,12 +62,10 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_panel');
 	});
 
-	Route::get('/admin_news', 'NewsController@showAdmin');
-	
+	Route::get('/admin_news', 'NewsController@showAdmin');	
 	Route::get('/admin_news_add', function () {
 		return view('admin.admin_news_add');
-	});
-	
+	});	
 	Route::post('/admin_news_add', 'NewsController@store');
 
 	Route::get('/admin_photogallery', 'PhotoFolderController@showAdmin');
@@ -77,7 +75,6 @@ Route::group(['middleware' => 'admin'], function () {
 	});
 
 	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');
-
 	Route::get('/admin_photofolder_edit_{id}', 'PhotoFolderController@edit');
 
 	Route::get('/admin_videogallery', function () {
@@ -97,11 +94,19 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::post('/admin_congrats_add', 'InfoController@store');
 	Route::post('/admin_infos_add', 'InfoController@store');
 
+	//url/admin_add_photos
+	Route::get('/admin_photos_add', 'PhotoController@add');
+	//Route::get('/admin_photos_add', 'TestController@index');
+	//Route::post('/admin_photos_add', 'PhotoController@store');
+	
 	Route::get('/admin_test', function() {
 		return view('admin.admin_test');
 	});
-
-	Route::post('/file_upload', 'TestController@store');
+	
+	Route::get('/test_remove', 'PhotoController@delete');
+	
+	Route::post('/file_upload', 'PhotoController@store');
+	Route::get('/file_delete', 'PhotoController@delete');
 	
 
 });
