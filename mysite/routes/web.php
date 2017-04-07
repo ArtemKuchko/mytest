@@ -103,10 +103,11 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_test');
 	});
 	
-	Route::get('/test_remove', 'PhotoController@delete');
+	//Route::get('/test_remove', 'PhotoController@delete');
 	
 	Route::post('/file_upload', 'PhotoController@store');
 	Route::get('/file_delete', 'PhotoController@delete');
 	
-
+	Route::get('/admin_test', 'TestController@index');
+	Route::post('/admin_test', 'TestController@store');
 });

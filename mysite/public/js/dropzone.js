@@ -117,7 +117,7 @@
       url: null,
       method: "post",
       withCredentials: false,
-      parallelUploads: 2,
+      parallelUploads: 1,
       uploadMultiple: false,
       maxFilesize: 256,
       paramName: "file",
@@ -134,7 +134,7 @@
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       autoQueue: true,
-      addRemoveLinks: true,
+      addRemoveLinks: false,
       previewsContainer: null,
       hiddenInputContainer: "body",
       capture: null,
@@ -268,7 +268,7 @@
             node.innerHTML = this.filesize(file.size);
           }
           if (this.options.addRemoveLinks) {
-            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
             file.previewElement.appendChild(file._removeLink);
           }
           removeFileEvent = (function(_this) {
@@ -300,13 +300,7 @@
         }
       },
       removedfile: function(file) {
-		  var name = file.name;
-		  $.ajax({
-			  type: 'GET',
-			  url: '/file_delete',
-			  data: "id="+name,
-			  dataType: 'html'
-		  });
+		  
         var _ref;
         if (file.previewElement) {
           if ((_ref = file.previewElement) != null) {

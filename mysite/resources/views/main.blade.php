@@ -63,7 +63,7 @@
                     <a href="{{url ('/news')}}">Новости</a>
                 </li>
                 <li>                  
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Галерея <b class="caret"></b></a>					
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Галерея <b class="caret"></b></a>					
 						<ul class="dropdown-menu">
 							<li>
 								<a href="{{url ('/photofolders')}}">Фотогалерея</a>

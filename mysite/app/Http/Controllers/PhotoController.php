@@ -31,9 +31,8 @@ class PhotoController extends Controller
 	
 	public function store(Request $request)
 	{
-		//$request -> myfile ->move(storage_path('app/myfiles'));	
 		
-		$file = $request -> file;
+		/*$file = $request -> file;
 		
 		$destinationPath = storage_path('app/myfiles');
 		
@@ -47,9 +46,26 @@ class PhotoController extends Controller
 		else 
 		{
 		   return Response::json('error', 400);
+		}*/
+		
+		$filesnum = count($_FILES['file']['name']);
+		$uploaddir =storage_path('app/myfiles/');
+		
+		for($i=0; $i<$filesnum; $i++)
+		{			
+			$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
+
+			if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
+			{
+				return Response::json('success', 200);
+			}
+			else
+			{
+				return Response::json('error', 400);
+			}
 		}
 		
-		return redirect('/admin_photos_add');
+		return redirect('/admin_photogallery');
 	}
 	
 	public function delete(Request $request)
