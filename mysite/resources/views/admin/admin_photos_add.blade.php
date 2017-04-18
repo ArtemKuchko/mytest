@@ -6,10 +6,10 @@
 	<script src="js/dropzone.js"></script>
 	<link href="css/dropzone.css" rel="stylesheet">
 
-	<h2>Добавление фотографий в альбом $album</h2>
+	<h2>Добавление фотографий</h2>
+	<h3>Фотоальбом "{{$folder->name}}"</h3>
 	
-	{{--<a href="{{ url('/test_remove') }}">Удалить</a>--}}
-
+	<h3>TO DO : с помощью функции mkdir - создавать папку для каждого фотоальбома и туда загружать фотки!</h3>
 	<form action="{{ url('/file_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
 	
 		{{ csrf_field() }}

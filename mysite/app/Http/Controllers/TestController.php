@@ -45,36 +45,6 @@ class TestController extends Controller
 			
 		}
 		
-		/*$filesnum = count($_FILES['file']['name']);
-		$uploaddir =storage_path('app/myfiles/');
-		
-		for($i=0; $i<$filesnum; $i++)
-		{
-		
-			$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
-
-			if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
-			{
-				return Response::json('success', 200);
-			}
-			else
-			{
-				return Response::json('error', 400);
-			}
-		}*/
-		
-		
-		/*
-		$uploaddir =storage_path('app/myfiles/');
-		$uploadfile = $uploaddir . basename($_FILES['file']['name']);
-
-		if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-			echo "Файл корректен и был успешно загружен.\n";
-		} else {
-			echo "Возможная атака с помощью файловой загрузки!\n";
-		}*/
-		
-		
 	}
 	
 	  /*public function delete($id)

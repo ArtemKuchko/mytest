@@ -23,10 +23,11 @@ class PhotoController extends Controller
     	
     }
 	
-	public function add()
+	public function add($folder_id)
 	{
+		$folder = PhotoFolder::find($folder_id);
 		
-		return view ('admin.admin_photos_add');
+		return view ('admin.admin_photos_add', ['folder' => $folder]);
 	}
 	
 	public function store(Request $request)
@@ -38,7 +39,7 @@ class PhotoController extends Controller
 		{
 			$uploaddir =storage_path('app/myfiles/');
 			$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
-			$uploadfile = $uploaddir . $i . '.' . $extension;
+			$uploadfile = $uploaddir . time(). $i . '.' . $extension; // имя = время + $i
 			
 			if (!move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
 			{

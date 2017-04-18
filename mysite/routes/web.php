@@ -95,9 +95,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::post('/admin_infos_add', 'InfoController@store');
 
 	//url/admin_add_photos
-	Route::get('/admin_photos_add', 'PhotoController@add');
-	//Route::get('/admin_photos_add', 'TestController@index');
-	//Route::post('/admin_photos_add', 'PhotoController@store');
+	Route::get('/admin_photos_add_{id}', 'PhotoController@add');
 	
 	Route::get('/admin_test', function() {
 		return view('admin.admin_test');
