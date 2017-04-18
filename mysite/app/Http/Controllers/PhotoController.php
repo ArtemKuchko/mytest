@@ -17,7 +17,7 @@ class PhotoController extends Controller
     {
         $photos = Photo::where('folder_id', $folder_id)->get();
 
-        $folder =PhotoFolder::find($folder_id);
+        $folder = PhotoFolder::find($folder_id);
 
 		return view('photos', ['photos' => $photos, 'folder' => $folder]);
     	
@@ -31,41 +31,22 @@ class PhotoController extends Controller
 	
 	public function store(Request $request)
 	{
-		
-		/*$file = $request -> file;
-		
-		$destinationPath = storage_path('app/myfiles');
-		
-		$extension =$file->getClientOriginalExtension(); 
-		$filename = time().'.'.$extension;
-		
-		if($request->file('file')->move($destinationPath, $filename)) 
-		{
-		   return Response::json('success', 200);
-		} 
-		else 
-		{
-		   return Response::json('error', 400);
-		}*/
-		
+	
 		$filesnum = count($_FILES['file']['name']);
-		$uploaddir =storage_path('app/myfiles/');
 		
 		for($i=0; $i<$filesnum; $i++)
-		{			
-			$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
-
-			if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
-			{
-				return Response::json('success', 200);
-			}
-			else
+		{
+			$uploaddir =storage_path('app/myfiles/');
+			$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
+			$uploadfile = $uploaddir . $i . '.' . $extension;
+			
+			if (!move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
 			{
 				return Response::json('error', 400);
 			}
+			
 		}
 		
-		return redirect('/admin_photogallery');
 	}
 	
 	public function delete(Request $request)

@@ -9,17 +9,17 @@
 	<h2>Добавление фотографий в альбом $album</h2>
 	
 	{{--<a href="{{ url('/test_remove') }}">Удалить</a>--}}
-	
+
 	<form action="{{ url('/file_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
 	
 		{{ csrf_field() }}
 		
-		<button type="submit">Submit data and files!</button>
-
+		<button type="submit">Загрузить</button>
+		
 	</form>
-
+	
 	<script>
-
+		
 	Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 
 		  // The configuration we've talked about above
@@ -27,8 +27,8 @@
 		  
 		  autoProcessQueue: false,
 		  uploadMultiple: true,
-		  parallelUploads: 1,
-		  maxFiles: null,
+		  parallelUploads: 100,
+		  maxFiles: 100,
 
 		  // The setting up of the dropzone
 		  init: function() {
@@ -60,7 +60,9 @@
 
 		}
 	
+	
 	</script>
+
 
 @endsection
 

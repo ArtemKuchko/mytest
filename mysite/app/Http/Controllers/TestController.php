@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 
 class TestController extends Controller
 {
@@ -32,14 +33,36 @@ class TestController extends Controller
 		for($i=0; $i<$filesnum; $i++)
 		{
 			$uploaddir =storage_path('app/myfiles/');
-			$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
-
+			$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
+			$uploadfile = $uploaddir . $i . '.' . $extension;
+			
+			//$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
+			
 			if (!move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
 			{
 				echo "Файл ". $_FILES['file']['tmp_name'][$i] ." не загружен\n";
 			}
 			
 		}
+		
+		/*$filesnum = count($_FILES['file']['name']);
+		$uploaddir =storage_path('app/myfiles/');
+		
+		for($i=0; $i<$filesnum; $i++)
+		{
+		
+			$uploadfile = $uploaddir . basename($_FILES['file']['name'][$i]);
+
+			if (move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
+			{
+				return Response::json('success', 200);
+			}
+			else
+			{
+				return Response::json('error', 400);
+			}
+		}*/
+		
 		
 		/*
 		$uploaddir =storage_path('app/myfiles/');
