@@ -27,7 +27,16 @@ class PhotoController extends Controller
 	{
 		$folder = PhotoFolder::find($folder_id);
 		
-		return view ('admin.admin_photos_add', ['folder' => $folder]);
+		//$comments = App\Post::find(1)->comments;
+		$photos = PhotoFolder::find($folder_id)->photos;
+		
+		/*foreach ($photos as $photo)
+		{
+			$temp = storage_path('app/myfiles/photos/'). $folder->id.'/'.$photo->image_path;
+			echo $temp.'<br>';
+		}*/
+		
+		return view ('admin.admin_photos_add', ['folder' => $folder, 'photos' => $photos]);
 	}
 	
 	public function store(Request $request)
@@ -60,18 +69,5 @@ class PhotoController extends Controller
 		unlink($file);
 		
 	}
-	/*public function dropzoneRemove(Request $request)
-	{
-		if($request->ajax()) { 
-			$photo = Photo::find($request->photoId); //Get image by id or desired parameters
-
-			if(File::exists($destinationPath.$photo->file_name)) //Check if file exists
-				File::delete($destinationPath.$photo->file_name) //Delete file from storage
-
-			$photo->delete()   //Delete file record from DB
-
-			return response('Photo deleted', 200); //return success
-		}
-	}*/
 
 }

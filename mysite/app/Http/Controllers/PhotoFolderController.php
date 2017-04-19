@@ -43,19 +43,23 @@ class PhotoFolderController extends Controller
     }
 
 	public function store(Request $request)
-	{		
+	{	
+		
 		$photofolder = new PhotoFolder();
 		$photofolder->name = $request->name;
 		$photofolder->description = $request->description;
 
 		$imageName = time().'.'.$request->myfile->getClientOriginalExtension();
 		$photofolder->image_path = $imageName;
-
-		//$request->myfile->move(public_path('uploads'), $imageName);
-		$request->myfile->move(public_path().'/images/photofolders/', $imageName);
+		$request->myfile->move(storage_path('app/myfiles/photofolders/'), $imageName);
 		
 		$photofolder-> save();
-
+		
+		$new_id = $photofolder->id; //just received id for the new photofolder
+		
+		//директория создается в папке photos т.к. в папке photofolders содержатся иконки фотоальбомов
+		mkdir(storage_path('app/myfiles/photos/').$new_id);
+		
 		return redirect('/admin_photogallery');
 	}
 

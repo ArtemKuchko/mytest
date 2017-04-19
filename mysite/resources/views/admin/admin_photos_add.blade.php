@@ -6,10 +6,10 @@
 	<script src="js/dropzone.js"></script>
 	<link href="css/dropzone.css" rel="stylesheet">
 
-	<h2>Добавление фотографий</h2>
-	<h3>Фотоальбом "{{$folder->name}}"</h3>
+	<h2>Фотоальбом "{{$folder->name}}"</h2>
 	
-	<h3>TO DO : с помощью функции mkdir - создавать папку для каждого фотоальбома и туда загружать фотки!</h3>
+	<h3>Добавление фотографий</h3>
+	
 	<form action="{{ url('/file_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
 	
 		{{ csrf_field() }}
@@ -17,6 +17,87 @@
 		<button type="submit">Загрузить</button>
 		
 	</form>
+	
+	<h3> Список фотографий текущего альбома: </h3>
+	
+	@if (count($photos)>0)
+		
+		@foreach($photos as $photo)
+			
+			<img src="{{storage_path('app/myfiles/photos/'). $folder->id.'/'.$photo->image_path}}" alt="">
+			{{--
+			@if (($loop->index)%4 ==0)
+				<div class="row">
+			@endif
+				
+			<div class="col-md-3 img-portfolio">
+				<a href="#" class="thumbnail">
+					<img src="{{storage_path('app/myfiles/photos/'). $folder->id.'/'.$photo->image_path}}" alt="">					
+				</a>
+			</div>
+			
+			@if ((($loop->index)+1)%4 ==0)
+				</div>
+				<hr>
+			@endif
+			--}}
+			
+		@endforeach
+		
+	@else
+		<p>В данном альбоме пока еще нет фотографий :-(</p>
+		
+	@endif
+	
+	
+	<!--<div class="row">
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+
+	</div>
+		
+	<hr>
+	
+	<div class="row">
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+		<div class="col-md-3 img-portfolio">
+			<a href="portfolio-item.html">
+				<img class="img-responsive img-hover" src="http://placehold.it/750x450" alt="">
+			</a>
+		</div>
+	</div>-->
 	
 	<script>
 		
@@ -51,16 +132,17 @@
 			this.on("successmultiple", function(files, response) {
 			  // Gets triggered when the files have successfully been sent.
 			  // Redirect user or notify of success.
+			  //location.href = 'http://stackoverflow.com';
+			  location.reload();
 			});
 			this.on("errormultiple", function(files, response) {
 			  // Gets triggered when there was an error sending the files.
 			  // Maybe show form again, and notify user of error
 			});
-		  }
-
+		
 		}
-	
-	
+	}
+		
 	</script>
 
 

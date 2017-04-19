@@ -13,6 +13,6 @@
 		<button type="submit">send</button>
 
 	</form>
-
+	
 @endsection
 

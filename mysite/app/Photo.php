@@ -11,6 +11,6 @@ class Photo extends Model
 
     public function photofolder()
     {
-        return $this->belongsTo('App\PhotoFolder', 'folder_id');
+        return $this->belongsTo('App\PhotoFolder');
     }
 }
