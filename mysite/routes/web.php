@@ -62,30 +62,47 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_panel');
 	});
 
+	//NEWS:
 	Route::get('/admin_news', 'NewsController@showAdmin');	
 	Route::get('/admin_news_add', function () {
 		return view('admin.admin_news_add');
 	});	
 	Route::post('/admin_news_add', 'NewsController@store');
 
+	//PHOTO:
 	Route::get('/admin_photogallery', 'PhotoFolderController@showAdmin');
-
 	Route::get('/admin_photofolder_add', function () {
 		return view('admin.admin_photofolder_add');
 	});
-
 	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');
 	Route::get('/admin_photofolder_edit_{id}', 'PhotoFolderController@edit');
 
-	Route::get('/admin_videogallery', function () {
-		return view('admin.admin_videogallery');
-	});
+	Route::get('/admin_photos_add_{id}', 'PhotoController@add');	
+	Route::get('/admin_photo_delete_{id}', 'PhotoController@delete');
+	Route::post('/admin_photo_upload', 'PhotoController@store');
 	
+	
+	//VIDEO:
+	/*Route::get('/admin_videogallery', function () {
+		return view('admin.admin_videogallery');
+	});*/
+	Route::get('/admin_videogallery', 'VideoFolderController@showAdmin');
+	Route::get('/admin_videofolder_add', function () {
+		return view('admin.admin_videofolder_add');
+	});
+	Route::post('/admin_videofolder_add', 'VideoFolderController@store');
+	Route::get('/admin_videofolder_edit_{id}', 'VideoFolderController@edit');
+
+	Route::get('/admin_videos_add_{id}', 'VideoController@add');	
+	Route::get('/admin_video_delete_{id}', 'VideoController@delete');
+	Route::post('/admin_video_upload', 'VideoController@store');
+	
+	
+	//INFO:
 	Route::get('/admin_events', 'InfoController@showAdmin');
 	Route::get('/admin_congrats', 'InfoController@showAdmin');
 	Route::get('/admin_infos', 'InfoController@showAdmin');
 	
-	///admin_events_add
 	Route::get('/admin_infos_add', 'InfoController@addAdmin');
 	Route::get('/admin_events_add', 'InfoController@addAdmin');
 	Route::get('/admin_congrats_add', 'InfoController@addAdmin');
@@ -94,16 +111,10 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::post('/admin_congrats_add', 'InfoController@store');
 	Route::post('/admin_infos_add', 'InfoController@store');
 
-	//url/admin_add_photos
-	Route::get('/admin_photos_add_{id}', 'PhotoController@add');
 	
 	Route::get('/admin_test', function() {
 		return view('admin.admin_test');
 	});
-	Route::get('/admin_photo_delete_{id}', 'PhotoController@delete');
-	
-	Route::post('/file_upload', 'PhotoController@store');
-	
 	Route::get('/admin_test', 'TestController@index');
 	Route::post('/admin_test', 'TestController@store');
 });

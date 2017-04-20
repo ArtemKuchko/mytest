@@ -53,7 +53,7 @@ class PhotoController extends Controller
 				//saving records in database for file/files:
 				$photo = new Photo();
 				$photo->folder_id = $folder_id;
-				$photo->name ='test';
+				$photo->name = null;
 				$photo->image_path = $uploadname;
 				$photo->save();				
 			}

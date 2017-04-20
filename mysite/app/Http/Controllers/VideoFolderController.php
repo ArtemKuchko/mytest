@@ -37,5 +37,19 @@ class VideoFolderController extends Controller
 		return view ('videofolders', ['videofolders' => $videofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
 
     }
+	
+	public function showAdmin()
+	{
+		$videofolders = VideoFolder::all();
+
+		return view('admin.admin_videogallery', ['videofolders' => $videofolders]);
+	}
+
+	public function edit($id)
+	{
+		$folder = VideoFolder::where('id', $id)->get();
+
+		return view('admin.admin_videofolder_edit', ['folder' => $folder[0]]);
+	}
 
 }

@@ -34,7 +34,7 @@
 	
 	<h3>Добавление фотографий</h3>
 	
-	<form action="{{ url('/file_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
+	<form action="{{ url('/admin_photo_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
 	
 		{{ csrf_field() }}
 		
