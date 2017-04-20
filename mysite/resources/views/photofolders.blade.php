@@ -25,12 +25,12 @@
                 </p>
                 <p>June 17, 2014</p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <a href="{{ url('/photos_'. $folder->id) }}">
-                    <img class="img-responsive img-hover" height="300px" width="500px"  src="{{'images/photofolders/' . $folder->image_path}}" alt="">
+                    <img class="img-responsive img-hover" height="200px" width="300px"  src="{{'images/photofolders/' . $folder->image_path}}" alt="">
                 </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <h3><a href="{{ url('/photos_'. $folder->id) }}">{{ $folder -> name }}</a>
                 </h3>
 

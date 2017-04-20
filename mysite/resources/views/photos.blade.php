@@ -11,13 +11,24 @@
 			margin-top:20px;
 		}
 
-		.thumbnail {
-			padding: 0;
-		}
-
 		.carousel-inner>.item>img, .carousel-inner>.item>a>img {
 			width: 100%;
 		}
+		
+		.thumbnail{
+		
+		width : 100%;
+		height: 100px;
+		overflow: auto;
+		}
+
+		.thumbnail img{
+		// your styles for the image
+		width: 100%;
+		height: auto;
+		display: block;
+		}
+		
 	</style>
 
 @endsection

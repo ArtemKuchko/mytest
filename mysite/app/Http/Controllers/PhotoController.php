@@ -3,70 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Photo;
 use App\PhotoFolder;
-//use Input;
+use App\Photo;
 use Response;
-use Storage;
 
 class PhotoController extends Controller
 {
-    //
-
-    public function show($folder_id)
+	
+    public function show($id)
     {
-        $photos = Photo::where('folder_id', $folder_id)->get();
-
-        $folder = PhotoFolder::find($folder_id);
-
-		return view('photos', ['photos' => $photos, 'folder' => $folder]);
-    	
+        $folder = PhotoFolder::find($id);
+		$photos = PhotoFolder::find($id)->photos;
+		
+		return view('photos', ['folder' => $folder, 'photos' => $photos]);    	
     }
 	
-	public function add($folder_id)
+	public function add($id)
 	{
-		$folder = PhotoFolder::find($folder_id);
+		session_start();
 		
-		//$comments = App\Post::find(1)->comments;
-		$photos = PhotoFolder::find($folder_id)->photos;
-		
-		/*foreach ($photos as $photo)
-		{
-			$temp = storage_path('app/myfiles/photos/'). $folder->id.'/'.$photo->image_path;
-			echo $temp.'<br>';
-		}*/
+		$_SESSION['folder_id'] = $id;
+		$folder = PhotoFolder::find($id);
+		$photos = PhotoFolder::find($id)->photos;
 		
 		return view ('admin.admin_photos_add', ['folder' => $folder, 'photos' => $photos]);
 	}
 	
 	public function store(Request $request)
 	{
-	
+		session_start();
+		$folder_id = $_SESSION['folder_id'];
+		
+		//saving file or files:
 		$filesnum = count($_FILES['file']['name']);
 		
-		for($i=0; $i<$filesnum; $i++)
+		for ($i=0; $i < $filesnum; $i++)
 		{
-			$uploaddir =storage_path('app/myfiles/');
-			$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);
-			$uploadfile = $uploaddir . time(). $i . '.' . $extension; // имя = время + $i
+			$uploaddir = 'images/photos/'.$folder_id.'/';
+			$extension = pathinfo($_FILES['file']['name'][$i], PATHINFO_EXTENSION);			
+			$uploadname = time(). $i . '.' . $extension;			
+			$uploadfile = $uploaddir . $uploadname;
 			
 			if (!move_uploaded_file($_FILES['file']['tmp_name'][$i], $uploadfile))
 			{
 				return Response::json('error', 400);
 			}
-			
+			else
+			{
+				//saving records in database for file/files:
+				$photo = new Photo();
+				$photo->folder_id = $folder_id;
+				$photo->name ='test';
+				$photo->image_path = $uploadname;
+				$photo->save();				
+			}
 		}
 		
 	}
 	
-	public function delete(Request $request)
-	{
+	public function delete($id)
+	{		
+		// 1 - получить id файла, 2 - unlink файл, 3 - удалить из базы
+		session_start();
+		$folder_id = $_SESSION['folder_id'];
 		
-		// 1 - получить имя файла, 2 - unlink файл
+		$photo = Photo::find($id);		
+		$file = 'images/photos/'.$folder_id .'/'. $photo->image_path;
 		
-		$file = storage_path('app/myfiles').'/test.png';
-		
-		unlink($file);
+		if (file_exists($file))
+		{
+			unlink($file);
+			$photo ->delete();	
+		}
+			
+		return redirect('/admin_photos_add_'.$folder_id);
 		
 	}
 

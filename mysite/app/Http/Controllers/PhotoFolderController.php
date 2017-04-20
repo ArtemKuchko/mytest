@@ -6,11 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\PhotoFolder;
-
-
 use DB;
-use Storage;
-
 
 class PhotoFolderController extends Controller
 {
@@ -51,14 +47,14 @@ class PhotoFolderController extends Controller
 
 		$imageName = time().'.'.$request->myfile->getClientOriginalExtension();
 		$photofolder->image_path = $imageName;
-		$request->myfile->move(storage_path('app/myfiles/photofolders/'), $imageName);
+		$request->myfile->move('images/photofolders/', $imageName);
 		
 		$photofolder-> save();
 		
 		$new_id = $photofolder->id; //just received id for the new photofolder
 		
 		//директория создается в папке photos т.к. в папке photofolders содержатся иконки фотоальбомов
-		mkdir(storage_path('app/myfiles/photos/').$new_id);
+		mkdir('images/photos/'.$new_id);
 		
 		return redirect('/admin_photogallery');
 	}
