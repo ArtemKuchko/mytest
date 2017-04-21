@@ -13,7 +13,12 @@
         <title> Ушу - Админ {{-- {{ config('app.name', 'Laravel') }} --}} </title>
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom Fonts -->
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		
         <!-- Scripts -->
         <script>
@@ -86,8 +91,15 @@
     </div>
 
 	@section('scripts')
-		<!-- Scripts -->
-		<script src="{{ asset('js/app.js') }}"></script>
+	<!-- Scripts -->
+	<script src="{{ asset('js/app.js') }}"></script>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 	@show
+
 </body>
 </html>

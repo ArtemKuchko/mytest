@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PhotoFolder;
 use App\Photo;
 use Response;
+use Illuminate\Support\Facades\Route;
 
 class PhotoController extends Controller
 {
@@ -20,8 +21,10 @@ class PhotoController extends Controller
 	
 	public function add($id)
 	{
-		session_start();
+		/*$temp = Route::current()->uri;
+		dd($temp);*/
 		
+		session_start();		
 		$_SESSION['folder_id'] = $id;
 		$folder = PhotoFolder::find($id);
 		$photos = PhotoFolder::find($id)->photos;

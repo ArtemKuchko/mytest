@@ -2,13 +2,16 @@
 
 @section ('input')
 
-    <h2>Фотогалерея</h2>
-    <p> Добавление, редактирование, удаление фотоальбомов</p>
-
-    <a class="btn btn-primary" href="{{ url('/admin_photofolder_add') }}">Добавить фотоальбом<i class="fa fa-angle-right"></i></a>
-
-    <p></p>
-
+    <h2>
+		Фотогалерея
+		<a class="btn btn-primary" href="{{ url('/admin_photofolder_add') }}">
+			<i class="fa fa-plus"></i>		
+			Добавить фотоальбом
+		</a>
+	</h2>
+    
+    </br>
+	
     @if (count($photofolders)>0)
 
         <table class="table table-bordered table-striped">
@@ -16,7 +19,7 @@
             <tr>
                 <th>#</th>
                 <th>Название</th>
-				<th>Фотографии</th>
+				
                 <th>Редактировать</th>
                 <th>Удаление</th>
             </tr>
@@ -28,8 +31,8 @@
                     <td>{{ $loop->iteration }}</td>
 					
 					<td>{{ $folder->name }}</td>
-					<td><a class="btn btn-success" href="{{ url('/admin_photos_add_'.$folder->id) }}" role="button">Фотографии</a></td>
-                    <td><a class="btn btn-default" href="{{ url('admin_photofolder_edit_'. $folder->id) }}" role="button">Редактирование</a></td>
+					<td><a class="btn btn-success" href="{{ url('/admin_photos_add_'.$folder->id) }}" role="button">Фотографии/Редактирование</a></td>
+				{{--<td><a class="btn btn-default" href="{{ url('admin_photofolder_edit_'. $folder->id) }}" role="button">Редактирование</a></td>--}}
                     <td><a class="btn btn-danger" href="#" role="button">Удалить</a></td>
                 </tr>
             @endforeach

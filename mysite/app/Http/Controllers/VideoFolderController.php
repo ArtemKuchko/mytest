@@ -41,15 +41,33 @@ class VideoFolderController extends Controller
 	public function showAdmin()
 	{
 		$videofolders = VideoFolder::all();
-
 		return view('admin.admin_videogallery', ['videofolders' => $videofolders]);
 	}
 
 	public function edit($id)
 	{
 		$folder = VideoFolder::where('id', $id)->get();
-
 		return view('admin.admin_videofolder_edit', ['folder' => $folder[0]]);
+	}
+	
+	
+	public function store(Request $request)
+	{
+		$videofolder = new VideoFolder();		
+		$videofolder->name = $request->name;
+		$videofolder->description = $request->description;
+
+		$imageName = time().'.'.$request->myfile->getClientOriginalExtension();
+		$videofolder->image_path = $imageName;
+		$request->myfile->move('images/videofolders/', $imageName);		
+		$videofolder-> save();
+		
+		$new_id = $videofolder->id; //just received id for the new videofolder
+		
+		//директория создается в папке videos т.к. в папке videofolders содержатся иконки видеоальбомов
+		mkdir('images/videos/'.$new_id);
+		
+		return redirect('/admin_videogallery');			
 	}
 
 }

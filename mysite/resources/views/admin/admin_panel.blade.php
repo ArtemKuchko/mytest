@@ -10,12 +10,48 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="{{ url('/admin_news') }}" class="list-group-item">Новости</a>
-                    <a href="{{ url('/admin_photogallery') }}" class="list-group-item">Фотогалерея</a>
-                    <a href="{{ url('/admin_videogallery') }}" class="list-group-item">Видеогалерея</a>
-                    <a href="{{ url('/admin_events') }}" class="list-group-item">События</a>
-                    <a href="{{ url('/admin_congrats') }}" class="list-group-item">Поздравления</a>
-					<a href="{{ url('/admin_infos') }}" class="list-group-item">Информация</a>
+				    
+					<?php
+						//для вывода активного navbar
+						$temp_news = null;
+						$temp_photo = null;
+						$temp_video = null;
+						$temp_event = null;
+						$temp_congrat = null;
+						$temp_info = null;
+						
+						if (substr_count(Route::current()->uri, 'news') > 0)
+						{
+							$temp_news = 'active';
+						}
+						if (substr_count(Route::current()->uri, 'photo') > 0)
+						{
+							$temp_photo = 'active';
+						}
+						if (substr_count(Route::current()->uri, 'video') > 0)
+						{
+							$temp_video = 'active';
+						}
+						if (substr_count(Route::current()->uri, 'event') > 0)
+						{
+							$temp_event = 'active';
+						}
+						if (substr_count(Route::current()->uri, 'congrat') > 0)
+						{
+							$temp_congrat = 'active';
+						}
+						if (substr_count(Route::current()->uri, 'info') > 0)
+						{
+							$temp_info = 'active';
+						}						
+					?>
+					
+                    <a href="{{ url('/admin_news') }}" class="{{'list-group-item '.$temp_news}}">Новости</a>
+                    <a href="{{ url('/admin_photogallery') }}" class="{{'list-group-item '.$temp_photo}}">Фотогалерея</a>
+                    <a href="{{ url('/admin_videogallery') }}" class="{{'list-group-item '.$temp_video}}">Видеогалерея</a>
+                    <a href="{{ url('/admin_events') }}" class="{{'list-group-item '.$temp_event}}">События</a>
+                    <a href="{{ url('/admin_congrats') }}" class="{{'list-group-item '.$temp_congrat}}">Поздравления</a>
+					<a href="{{ url('/admin_infos') }}" class="{{'list-group-item '.$temp_info}}">Информация</a>
 
                 </div>
             </div>

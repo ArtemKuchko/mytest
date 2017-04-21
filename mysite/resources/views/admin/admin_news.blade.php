@@ -2,12 +2,15 @@
 
 @section ('input')
 
-	<h2>Новости</h2>
-	<p> Добавление, редактирование, удаление новостей</p>
+	<h2>
+		Новости
+		<a class="btn btn-primary" href="{{ url('/admin_news_add') }}">
+			<i class="fa fa-plus"></i>
+			Добавить новость	
+		</a>
+	</h2>
 	
-	<a class="btn btn-primary" href="{{ url('/admin_news_add') }}">Добавить новость<i class="fa fa-angle-right"></i></a>
-
-	<p></p>
+	</br>
 	
 	@if (count($news)>0)
 		

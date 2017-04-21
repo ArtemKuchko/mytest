@@ -2,9 +2,9 @@
 
 @section ('input')
 
-    <h2>Редактирование фотоальбома</h2>
+    <h2>Редактирование видеоальбома</h2>
 
-    <form action="{{ url('/admin_photofolder_update') }}" method="post" id="contactForm" novalidate>
+    <form action="{{ url('/admin_videofolder_update') }}" method="post" id="contactForm" novalidate>
 
         {{ csrf_field() }}
 
@@ -17,7 +17,7 @@
         </div>
         <div class="control-group form-group">
             <div class="controls">
-                <label>Обложка фотоальбома:</label>
+                <label>Обложка видеоальбома:</label>
                 <input type="file" class="form-control">
             </div>
         </div>
