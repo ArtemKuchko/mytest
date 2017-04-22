@@ -72,6 +72,29 @@ class PhotoFolderController extends Controller
 
 		return view('admin.admin_photofolder_edit', ['folder' => $folder[0]]);
 	}
-
+	
+	public function update(Request $request, $id)
+	{			
+		$folder = PhotoFolder::find($id);		
+		$folder->name = $request->name;
+		$folder->description = $request->description;
+		
+		if (!empty($request->file))		
+		{
+			$uploaddir = 'images/photofolders/';
+			$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+			$uploadname = time() . '.' . $extension;			
+			$uploadfile = $uploaddir . $uploadname;
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
+			{
+				unlink('images/photofolders/'.$folder->image_path);
+				$folder->image_path = $uploadname;
+			}					
+		}
+		
+		$folder->save();		
+		return back();
+		
+	}
 
 }

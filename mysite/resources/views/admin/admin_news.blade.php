@@ -18,9 +18,8 @@
 			<thead> 
 				<tr> 
 					<th>#</th> 
-					<th>Название</th>
-					<th>Просмотр</th>
-					<th>Редактирование</th>
+					<th>Название</th>					
+					<th>Редактировать</th>
 					<th>Удаление</th>
 				</tr>
 				
@@ -30,8 +29,7 @@
 				<tr>
 					<td>{{ $loop->iteration }}</td>
 					<td>{{ $one->name }}</td>
-					<td><a class="btn btn-success" href="#" role="button">Просмотр</a></td>
-					<td><a class="btn btn-default" href="#" role="button">Редактировать</a></td>
+					<td><a class="btn btn-success" href="#" role="button">Просмотр/Редактирование</a></td>					
 					<td><a class="btn btn-danger" href="#" role="button">Удалить</a></td>
 				</tr>
 				@endforeach

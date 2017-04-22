@@ -76,6 +76,7 @@ Route::group(['middleware' => 'admin'], function () {
 	});
 	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');
 	Route::get('/admin_photofolder_edit_{id}', 'PhotoFolderController@edit');
+	Route::post('/admin_photofolder_update_{id}', 'PhotoFolderController@update');
 
 	Route::get('/admin_photos_add_{id}', 'PhotoController@add');	
 	Route::get('/admin_photo_delete_{id}', 'PhotoController@delete');
@@ -117,4 +118,5 @@ Route::group(['middleware' => 'admin'], function () {
 	});
 	Route::get('/admin_test', 'TestController@index');
 	Route::post('/admin_test', 'TestController@store');
+	Route::post('/test_upload_one', 'TestController@store_one');
 });

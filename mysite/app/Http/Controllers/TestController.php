@@ -15,15 +15,7 @@ class TestController extends Controller
     public function index(Request $request)
     {
 		return view('admin.admin_test');
-		/*$stroka = '1,2,3,4,5,6,7';
-		$temp = 0;
-		
-		for ($i=0; $i < strlen($stroka); $i++)
-		{
-			$temp+= $stroka[$i];
-		}
-		
-		echo $temp;*/
+
     }
 	
 	public function store(Request $request)
@@ -44,6 +36,12 @@ class TestController extends Controller
 			}
 			
 		}
+		
+	}
+	
+	public function store_one(Request $request)
+	{
+		dd($_FILES['myfile']['tmp_name']);
 		
 	}
 	

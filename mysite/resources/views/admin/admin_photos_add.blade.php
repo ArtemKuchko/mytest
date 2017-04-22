@@ -5,6 +5,7 @@
 	<script src="js/dropzone.js"></script>
 	<link href="css/dropzone.css" rel="stylesheet">	
 	<style>
+	
 	.thumbnail{        
     //width: 30px; 
     // or you could use percentage values for responsive layout
@@ -20,14 +21,32 @@
 		display: block;
 	}
 	
+	/*.btn-file {
+    position: relative;
+    overflow: hidden;
+	}
+	
+	.btn-file input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 100px;
+		text-align: right;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		outline: none;
+		background: white;
+		cursor: inherit;
+		display: block;
+	}*/
+	
+
+	
 	</style>
 	
 	<h2>
-		<a href="{{url('/admin_photogallery')}}" class="btn btn-default btn-circle btn-lg">			
-			<i class="fa fa-long-arrow-left "></i>
-			Назад
-		</a>
-		
 		Фотоальбом "{{$folder->name}}"		
 		<a class="btn btn-default" role="button" data-toggle="collapse" href="#mainData" aria-expanded="false" aria-controls="collapseExample">								
 			<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -42,39 +61,41 @@
 		<div class="collapse" id="mainData">
 		  <div class="well">
 			
-				<form class="form-horizontal" action="{{ url('/admin_photofolder_update') }}" method="post" id="contactForm" novalidate>
+				<form class="form-horizontal" action="{{ url('/admin_photofolder_update_'.$folder->id) }}" method="post" enctype="multipart/form-data">
 
 					{{ csrf_field() }}
 					
 					<div class="form-group">
 						<div class="controls">
 							<label for="name" class="col-sm-2 control-label">Название:</label>
-							<div class="col-sm-10">							
+							<div class="col-sm-8">							
 								<input name="name" value="{{$folder->name}}" required class="form-control" id="name" required data-validation-required-message="Please enter your name.">
 							</div>							
 						</div>
 					</div>
+								
 					<div class="form-group">
-						<div class="controls">							
-							<div class="col-xs-6 col-md-3">
-								<label>Обложка фотоальбома:</label>
-								<a href="" class="thumbnail">
-								  <img src="{{'images/photofolders/'. $folder->image_path}}" alt="">					
-								</a>
-							</div>
-							<input type="file" name="file">
-							<br>
-						</div>
-					</div>
-
-					<div class="control-group form-group">
 						<div class="controls">
-							<label>Описание:</label>
-							<textarea rows="3" required name="description" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$folder->description}}</textarea>
+							<label for="description" class="col-sm-2 control-label">Описание:</label>
+							<div class="col-sm-8">							
+								<textarea rows="3" required name="description" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$folder->description}}</textarea>
+							</div>							
 						</div>
 					</div>
-					<div id="success"></div>
-					<!-- For success/fail messages -->
+					
+					<div class="form-group">
+						<div class="controls">
+							<label for="file" class="col-sm-2 control-label">Обложка:</label>
+							<div class="col-sm-8">
+								<img class="img-responsive img-hover" src="{{'images/photofolders/' . $folder->image_path}}" alt="">
+								<span class="btn btn-default btn-file">
+									Изменить <i class="fa fa-upload" aria-hidden="true"></i>
+									<input type="file" name="file">									
+								</span>
+							</div>
+						</div>
+					</div>
+					
 					<button type="submit" class="btn btn-success">Сохранить</button>
 				</form>
 		  </div>
@@ -86,7 +107,7 @@
 				
 					{{ csrf_field() }}
 					
-					<button type="submit" class="btn btn-success">Загрузить</button>		
+					<button type="submit" class="btn btn-success center-block">Загрузить на сервер</button>
 					
 				</form>
 			
@@ -100,12 +121,13 @@
 							<div class="row">
 						@endif
 							
-						<div class="col-md-3 img-portfolio">			
-							<a href="#" class="thumbnail">
+						<div class="col-md-3 img-portfolio text-center">			
+							<a class="thumbnail">
 								<img src="{{'images/photos/'. $folder->id.'/'.$photo->image_path}}" alt="">					
 							</a>
-							
-							<a href="{{ url('/admin_photo_delete_'.$photo->id) }}" class="btn btn-danger">Удалить</a>
+							<a href="{{ url('/admin_photo_delete_'.$photo->id) }}" class="btn btn-danger btn-sm">
+								Удалить
+							</a>							
 						</div>
 						
 						@if ((($loop->index)+1)%4 ==0)
@@ -132,8 +154,7 @@
 		
 	Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 		  // The configuration we've talked about above
-		  addRemoveLinks: true,
-		  
+		  addRemoveLinks: true,		  
 		  autoProcessQueue: false,
 		  uploadMultiple: true,
 		  parallelUploads: 100,
@@ -147,7 +168,7 @@
 			  // Make sure that the form isn't actually being sent.
 			  e.preventDefault();
 			  e.stopPropagation();
-			  myDropzone.processQueue();
+			  myDropzone.processQueue();			  
 			});
 			// Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
 			// of the sending event because uploadMultiple is set to true.
@@ -170,7 +191,8 @@
 	}
 		
 	</script>
-
+	
+	
 
 @endsection
 
