@@ -21,7 +21,7 @@
 		display: block;
 	}
 	
-	/*.btn-file {
+	.btn-file {
     position: relative;
     overflow: hidden;
 	}
@@ -40,9 +40,7 @@
 		background: white;
 		cursor: inherit;
 		display: block;
-	}*/
-	
-
+	}
 	
 	</style>
 	
@@ -69,7 +67,7 @@
 						<div class="controls">
 							<label for="name" class="col-sm-2 control-label">Название:</label>
 							<div class="col-sm-8">							
-								<input name="name" value="{{$folder->name}}" required class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+								<input name="name" value="{{$folder->name}}" required class="form-control" id="name" required>
 							</div>							
 						</div>
 					</div>
@@ -78,7 +76,7 @@
 						<div class="controls">
 							<label for="description" class="col-sm-2 control-label">Описание:</label>
 							<div class="col-sm-8">							
-								<textarea rows="3" required name="description" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none">{{$folder->description}}</textarea>
+								<textarea rows="3" required name="description" cols="100" class="form-control" id="message" required maxlength="999" style="resize:none">{{$folder->description}}</textarea>
 							</div>							
 						</div>
 					</div>
@@ -96,7 +94,9 @@
 						</div>
 					</div>
 					
-					<button type="submit" class="btn btn-success">Сохранить</button>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btn-lg center-block">Сохранить</button>
+					</div>
 				</form>
 		  </div>
 		</div>
