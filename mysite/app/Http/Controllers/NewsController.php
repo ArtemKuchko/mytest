@@ -49,6 +49,47 @@ class NewsController extends Controller
 		
 	}
 	
+	public function edit($id)
+	{
+		$news = News::find($id);
+		return view('admin.admin_news_edit', ['news' => $news]);
+	}
+	
+	public function update(Request $request, $id)
+	{
+		$news = News::find($id);
+		
+		$news->name = $request->name;
+		$news->description = $request->description;
+		
+		if (!empty($request->file))		
+		{
+			$uploaddir = 'images/news/';
+			$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+			$uploadname = time() . '.' . $extension;			
+			$uploadfile = $uploaddir . $uploadname;
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
+			{
+				unlink('images/news/'.$news->image_path);
+				$news->image_path = $uploadname;
+			}					
+		}
+		
+		$news->save();		
+		//return redirect('/admin_news');
+		return back();
+		
+	}
+	
+	public function delete($id)
+	{
+		$news = News::find($id);
+		$news->delete();		
+		unlink('images/news/'.$news->image_path);
+		
+		return back();
+	}
+	
 	
 	
 	

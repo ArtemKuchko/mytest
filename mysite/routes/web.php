@@ -68,6 +68,9 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_news_add');
 	});	
 	Route::post('/admin_news_add', 'NewsController@store');
+	Route::get('/admin_news_delete_{id}', 'NewsController@delete');
+	Route::get('/admin_news_edit_{id}', 'NewsController@edit');
+	Route::post('/admin_news_update_{id}', 'NewsController@update');
 
 	//PHOTO:
 	Route::get('/admin_photogallery', 'PhotoFolderController@showAdmin');
