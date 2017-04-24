@@ -96,5 +96,27 @@ class PhotoFolderController extends Controller
 		return back();
 		
 	}
+	
+	public function delete($id)
+	{
+		//удаление записей в БД
+		$folder = PhotoFolder::find($id);		
+		$photos = $folder->photos;
+		
+		$dirr = 'images/photos/'.$folder->id;
+		
+		//удаление фотографий:
+		foreach ($photos as $photo)
+		{
+			$photo->delete();
+			unlink($dirr.'/'.$photo->image_path);
+		}
+		rmdir($dirr);
+		
+		$folder -> delete();
+		unlink('images/photofolders/'.$folder->image_path);
+		
+		return back();
+	}
 
 }

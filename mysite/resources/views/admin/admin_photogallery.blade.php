@@ -31,8 +31,28 @@
                     <td>{{ $loop->iteration }}</td>
 					
 					<td>{{ $folder->name }}</td>
-					<td><a class="btn btn-success" href="{{ url('/admin_photos_add_'.$folder->id) }}" role="button">Фотографии/Редактирование <em class="fa fa-pencil"></a></td>				
-                    <td><a class="btn btn-danger" href="#" role="button">Удалить <em class="fa fa-trash"></em></a></td>
+					<td><a class="btn btn-success" href="{{ url('/admin_photos_add_'.$folder->id) }}" role="button">Фотографии / Редактирование <em class="fa fa-pencil"></a></td>				
+                    <td><a class="btn btn-danger" role="button" data-toggle="modal" data-target="{{'#myModal'.$folder->id}}">Удалить <em class="fa fa-trash"></em></a></td>
+					
+					<!-- Modal window for album deleting -->
+					<div class="modal fade" id="{{'myModal'.$folder->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">Удаление фотоальбома "{{ $folder->name }}"</h4>
+						  </div>
+						  <div class="modal-body">
+							Вы уверены что хотите удалить фотоальбом?
+						  </div>
+						  <div class="modal-footer">			
+							<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+							<a href="{{ url('/admin_photofolder_delete_'.$folder->id)}}" class="btn btn-primary">Удалить</a>							
+						  </div>
+						</div>
+					  </div>
+					</div>
+					
                 </tr>
             @endforeach
 
@@ -40,5 +60,7 @@
         </table>
 
     @endif
+
+
 
 @endsection
