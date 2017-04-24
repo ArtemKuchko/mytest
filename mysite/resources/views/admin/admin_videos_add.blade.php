@@ -4,8 +4,7 @@
 	
 	<script src="js/dropzone.js"></script>
 	<link href="css/dropzone.css" rel="stylesheet">	
-	<style>
-	
+	<style>	
 	.thumbnail{        
     //width: 30px; 
     // or you could use percentage values for responsive layout
@@ -45,7 +44,7 @@
 	</style>
 	
 	<h2>
-		Фотоальбом "{{$folder->name}}"		
+		Видеоальбом "{{$folder->name}}"		
 		<a class="btn btn-default" role="button" data-toggle="collapse" href="#mainData" aria-expanded="false" aria-controls="collapseExample">								
 			<i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 			
@@ -59,7 +58,7 @@
 		<div class="collapse" id="mainData">
 		  <div class="well">
 			
-				<form class="form-horizontal" action="{{ url('/admin_photofolder_update_'.$folder->id) }}" method="post" enctype="multipart/form-data">
+				<form class="form-horizontal" action="{{ url('/admin_videofolder_update_'.$folder->id) }}" method="post" enctype="multipart/form-data">
 
 					{{ csrf_field() }}
 					
@@ -85,10 +84,10 @@
 						<div class="controls">
 							<label for="file" class="col-sm-2 control-label">Обложка:</label>
 							<div class="col-sm-8">
-								<img class="img-responsive img-hover" src="{{'images/photofolders/' . $folder->image_path}}" alt="">
+								<img class="img-responsive img-hover" src="{{'images/videofolders/' . $folder->image_path}}" alt="">
 								<span class="btn btn-default btn-file">
 									Изменить <i class="fa fa-upload" aria-hidden="true"></i>
-									<input type="file" name="file" accept="image/*">							
+									<input type="file" name="file" accept="image/*">									
 								</span>
 							</div>
 						</div>
@@ -103,7 +102,7 @@
 		
 		</br>
 
-				<form action="{{ url('/admin_photo_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
+				<form action="{{ url('/admin_video_upload') }}" method="post" class="dropzone" id="my-awesome-dropzone">
 				
 					{{ csrf_field() }}
 					
@@ -113,19 +112,21 @@
 			
 				</br>
 				
-				@if (count($photos)>0)
+				@if (count($videos)>0)
 					
-					@foreach($photos as $photo)
+					@foreach($videos as $video)
 						
 						@if (($loop->index)%4 ==0)
 							<div class="row">
 						@endif
 							
 						<div class="col-md-3 img-portfolio text-center">			
-							<a class="thumbnail">
-								<img src="{{'images/photos/'. $folder->id.'/'.$photo->image_path}}" alt="">					
-							</a>
-							<a href="{{ url('/admin_photo_delete_'.$photo->id) }}" class="btn btn-danger btn-sm">
+							<!--<a class="thumbnail">-->							
+							<video width="200" controls>
+							  <source src="{{'videos/'. $folder->id.'/'.$video->video_path}}">	  
+							</video>
+							<!--</a>-->
+							<a href="{{ url('/admin_video_delete_'.$video->id) }}" class="btn btn-danger btn-sm">
 								Удалить <em class="fa fa-trash"></em>
 							</a>							
 						</div>
@@ -141,7 +142,7 @@
 					@endforeach
 					
 				@else
-					<p>В данном альбоме пока еще нет фотографий :-(</p>
+					<p>В данном альбоме пока еще нет видео :-(</p>
 					
 				@endif
 		  
@@ -154,12 +155,13 @@
 		
 	Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 		  // The configuration we've talked about above
+		  maxFilesize: 500,
 		  addRemoveLinks: true,		  
 		  autoProcessQueue: false,
 		  uploadMultiple: true,
 		  parallelUploads: 100,
-		  maxFiles: 100,
-		  acceptedFiles: ".jpeg,.jpg,.png,.gif",
+		  maxFiles: 100,		  
+		  acceptedFiles: ".mp4,.mkv,.avi",
 		  // The setting up of the dropzone
 		  init: function() {
 			var myDropzone = this;

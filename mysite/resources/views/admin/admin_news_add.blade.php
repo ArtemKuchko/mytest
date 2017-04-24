@@ -18,7 +18,7 @@
 		<div class="control-group form-group">
 			<div class="controls">
 				<label>Загрузить фото:</label>
-				<input name="myfile" type="file" class="form-control" id="phone" required>
+				<input name="myfile" type="file" class="form-control" accept="image/*" id="phone" required>
 			</div>
 		</div>
 

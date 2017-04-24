@@ -14,17 +14,13 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::all();
-
         return view('news', ['news' => $news]);
-
     }
 
     public function show($id)
     {
         $one_news = News::find($id);
-
         return view ('one_news', ['one_news' => $one_news]);
-
     }
 	
 	public function store(Request $request)
@@ -43,10 +39,8 @@ class NewsController extends Controller
 	
 	public function showAdmin()
 	{
-		$news = News::all();
-		
-		return view('admin.admin_news', ['news' => $news]);
-		
+		$news = News::all();		
+		return view('admin.admin_news', ['news' => $news]);	
 	}
 	
 	public function edit($id)
@@ -57,8 +51,7 @@ class NewsController extends Controller
 	
 	public function update(Request $request, $id)
 	{
-		$news = News::find($id);
-		
+		$news = News::find($id);		
 		$news->name = $request->name;
 		$news->description = $request->description;
 		
@@ -75,10 +68,8 @@ class NewsController extends Controller
 			}					
 		}
 		
-		$news->save();		
-		//return redirect('/admin_news');
-		return back();
-		
+		$news->save();				
+		return back();		
 	}
 	
 	public function delete($id)
@@ -88,9 +79,5 @@ class NewsController extends Controller
 		unlink('images/news/'.$news->image_path);
 		
 		return back();
-	}
-	
-	
-	
-	
+	}	
 }

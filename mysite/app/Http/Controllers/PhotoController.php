@@ -20,10 +20,7 @@ class PhotoController extends Controller
     }
 	
 	public function add($id)
-	{
-		/*$temp = Route::current()->uri;
-		dd($temp);*/
-		
+	{		
 		session_start();		
 		$_SESSION['folder_id'] = $id;
 		$folder = PhotoFolder::find($id);
@@ -79,7 +76,7 @@ class PhotoController extends Controller
 			$photo ->delete();	
 		}
 			
-		return redirect('/admin_photos_add_'.$folder_id);
+		return back();
 		
 	}
 

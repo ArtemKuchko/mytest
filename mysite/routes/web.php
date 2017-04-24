@@ -77,8 +77,7 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin_photofolder_add', function () {
 		return view('admin.admin_photofolder_add');
 	});
-	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');
-	Route::get('/admin_photofolder_edit_{id}', 'PhotoFolderController@edit');
+	Route::post('/admin_photofolder_add', 'PhotoFolderController@store');	
 	Route::post('/admin_photofolder_update_{id}', 'PhotoFolderController@update');
 	Route::get('/admin_photofolder_delete_{id}', 'PhotoFolderController@delete');
 
@@ -96,7 +95,8 @@ Route::group(['middleware' => 'admin'], function () {
 		return view('admin.admin_videofolder_add');
 	});
 	Route::post('/admin_videofolder_add', 'VideoFolderController@store');
-	Route::get('/admin_videofolder_edit_{id}', 'VideoFolderController@edit');
+	Route::post('/admin_videofolder_update_{id}', 'VideoFolderController@update');
+	Route::get('/admin_videofolder_delete_{id}', 'VideoFolderController@delete');
 
 	Route::get('/admin_videos_add_{id}', 'VideoController@add');	
 	Route::get('/admin_video_delete_{id}', 'VideoController@delete');

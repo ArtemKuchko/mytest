@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-
 use App\PhotoFolder;
-use DB;
 
+use DB;
 class PhotoFolderController extends Controller
 {
     //
@@ -64,13 +62,6 @@ class PhotoFolderController extends Controller
 		$photofolders = PhotoFolder::all();
 
 		return view('admin.admin_photogallery', ['photofolders' => $photofolders]);
-	}
-
-	public function edit($id)
-	{
-		$folder = PhotoFolder::where('id', $id)->get();
-
-		return view('admin.admin_photofolder_edit', ['folder' => $folder[0]]);
 	}
 	
 	public function update(Request $request, $id)
