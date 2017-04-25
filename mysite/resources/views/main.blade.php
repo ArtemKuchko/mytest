@@ -11,17 +11,20 @@
 		<meta name="author" content="">
 
 		<title>Мариуполь - УШУ</title>
+		
+		<!--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >-->
+		
 		<link rel="shortcut icon" href="images/small_logo.ico" />
 
 		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
 		<!-- Custom CSS -->
-		<link href="css/modern-business.css" rel="stylesheet">
+		<link href="{{ asset('css/modern-business.css') }}" rel="stylesheet">
 
 		<!-- Custom Fonts -->
-		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+		<link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+		
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>

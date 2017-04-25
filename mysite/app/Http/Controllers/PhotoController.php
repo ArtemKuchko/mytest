@@ -14,7 +14,7 @@ class PhotoController extends Controller
     public function show($id)
     {
         $folder = PhotoFolder::find($id);
-		$photos = PhotoFolder::find($id)->photos;
+		$photos = $folder->photos;
 		
 		return view('photos', ['folder' => $folder, 'photos' => $photos]);    	
     }
@@ -24,7 +24,7 @@ class PhotoController extends Controller
 		session_start();		
 		$_SESSION['folder_id'] = $id;
 		$folder = PhotoFolder::find($id);
-		$photos = PhotoFolder::find($id)->photos;
+		$photos = $folder->photos;
 		
 		return view ('admin.admin_photos_add', ['folder' => $folder, 'photos' => $photos]);
 	}

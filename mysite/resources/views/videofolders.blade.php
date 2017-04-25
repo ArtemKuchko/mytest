@@ -26,8 +26,7 @@
                 <p>June 17, 2014</p>
             </div>
             <div class="col-md-6 text-center">
-                <a href="{{ url('/videos_'. $folder->id) }}">
-                    {{--<img class="img-responsive img-hover" height="300px" width="500px"  src="{{'images/videofolders/' . $folder->image_path}}" alt="">--}}
+                <a href="{{ url('/videos_'. $folder->id) }}">                    
 					<img src="{{'images/videofolders/' . $folder->image_path}}" class="img-thumbnail" alt="" width="400" height="500">
                 </a>
             </div>

@@ -15,7 +15,7 @@
         <!-- Styles -->
         <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
 		<!-- Bootstrap Core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
 		<!-- Custom Fonts -->
 		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -59,7 +59,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('login') }}">Войти</a></li>
 								{{--<li><a href="{{ route('register') }}">Register</a></li>--}}
                         @else
                             <li class="dropdown">
@@ -72,7 +72,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Выйти
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

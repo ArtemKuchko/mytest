@@ -14,7 +14,8 @@
 Route::get('/', 'MainController@index');
 
 Route::get('/news', 'NewsController@index');
-Route::get('/news_{id}', 'NewsController@show');
+Route::get('/news_{page}', 'NewsController@show');
+Route::get('/news_one_{id}', 'NewsController@showOne');
 
 Route::get('/photofolders', 'PhotoFolderController@index');
 Route::get('/photofolders_{page}', 'PhotoFolderController@show');
@@ -22,7 +23,8 @@ Route::get('/photos_{id}', 'PhotoController@show');
 
 Route::get('/videofolders', 'VideoFolderController@index');
 Route::get('/videofolders_{page}', 'VideoFolderController@show');
-Route::get('/videos_{id}', 'VideoController@show');
+//Route::get('/videos_{id}', 'VideoController@show');
+Route::get('/videos/{id}', 'VideoController@show');
 
 Route::get('/events', 'InfoController@show');
 Route::get('/congrats', 'InfoController@show');
@@ -70,8 +72,8 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::post('/admin_news_add', 'NewsController@store');
 	Route::get('/admin_news_delete_{id}', 'NewsController@delete');
 	Route::get('/admin_news_edit_{id}', 'NewsController@edit');
-	Route::post('/admin_news_update_{id}', 'NewsController@update');
-
+	Route::post('/admin_news_update_{id}', 'NewsController@update');	
+	
 	//PHOTO:
 	Route::get('/admin_photogallery', 'PhotoFolderController@showAdmin');
 	Route::get('/admin_photofolder_add', function () {

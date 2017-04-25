@@ -1,30 +1,7 @@
 @extends ('main')
 
-@section ('head')
-	
-	@parent
-
-	<style>
-		/*
-		.video {
-			height: 0;
-			position: relative;
-			padding-bottom: 56.25%; /* Если видео 16/9, то 9/16*100 = 56.25%. Также и с 4/3 - 3/4*100 = 75% */
-		}
-		.video iframe {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-		}*/
-
-	</style>
-
-@endsection
-
 @section('content')
-		
+
 		<!-- Page Heading/Breadcrumbs -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -41,90 +18,74 @@
 			</div>
 		</div>
 		<!-- /.row -->
+
 		
+	@if(count($videos) > 0)
+
+	<div class="row">
+
+	@foreach ($videos->sortByDesc('created_at') as $video)
+		<!-- Blog Post -->
+		<div class="col-md-6 img-portfolio">			
+			<video height="300" width="500" controls>
+			  <source src="{{'videos/'. $folder->id.'/'.$video->video_path}}">	  
+			</video>
+			
+			<h3>{{ $video -> name }}</h3>
 		
-		<div class="row">
-            <div class="col-md-8 text-center">
-				<embed src="videos/1/1.mp4" height="360" width="640">
-			</div>
-			<div class="col-md-4">
-				<h3>{{ $videos[0]-> name }}</h3>
-					<p>{{ $folder->description }}</p>
-					<h3>Project Details</h3>
-					<ul>
-						<li>Lorem Ipsum</li>
-						<li>Dolor Sit Amet</li>
-						<li>Consectetur</li>
-						<li>Adipiscing Elit</li>
-					</ul>
-			</div>
+			<hr>
+		</div>
+		@endforeach
+		
+		<?php
+		
+			$start = 0;			
+			$range = 2; //кол-во новостей на 1 стр			
+			
+			for ($i=0, $pages = intval(count($videos)/$range); $i < $pages; $i++)
+			{
+				$end = $start + $range;
+				echo 'Страница номер -'.$i.': </br>';
+				for ($j=$start; $j<$end; $j++)
+				{
+					echo $videos[$j]->name.'</br>';
+				}
+				$start = $end;
+				
+			}
+		?>
+		
+		<div class="col-lg-12">
+			<ul class="pagination">
+				<li>
+					<a href="#">«</a>
+				</li>
+				
+				@for ($i=0; $i<$pages; $i++)
+				
+				<!--<li class="active">-->
+				<li>
+					<a href="{{ url('/videos_'.$folder->id.'/'.$i)}}">{{$i}}</a>
+				</li>
+				
+				@endfor
+
+				<li>
+					<a href="#">»</a>
+				</li>
+			</ul>
 		</div>
 		
-		<hr>
-		
-        <!-- Projects Row -->
-		<div class="row">
-			
-			
-				@foreach ($videos as $video)
-				<div class="col-lg-3">
-					<a href="#" class="thumbnail" >
-					  <img width="250px" src="{{ 'images/videos/' . $folder->id . '/' . $loop->iteration . '.jpg' }}" alt="...">
-					</a>
-				</div>
-				@endforeach
-									
-			
-		</div>
-			
-		<!--<div class="col-md-6 img-portfolio">
-			<p>Iframe:</p>
-			<iframe width="420" height="315" src="videos/1/1.mp4"> </iframe>
-		</div>
-		
-		<div class="col-md-6 img-portfolio">
-			<p>Object:</p>
-			<object width="420" height="315" data="videos/1/1.mp4"></object>
+	@else		
+	<p> В данном альбоме пока нет видео :-( </p>
+	
+	@endif
+	</div>
 
-		</div>
-		
-		<div class="col-md-6 img-portfolio">
-			<p>Embed:</p>
-			<embed src="videos/1/1.mp4" autostart="false" height="300" width="500" type="audio/mpeg/">
-
-		</div>-->
-        <!-- /.row -->
-
-        
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-		
 @endsection
+
+		
+		
+		
+		
+		

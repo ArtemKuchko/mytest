@@ -2,22 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\News;
-
 use Illuminate\Http\Request;
+
+use App\News;
+use App\Info;
 
 use DB;
 
 class NewsController extends Controller
 {
+	public function index()
+	{
+		return redirect('/news_1');
+	}
 	
-    public function index()
+	public function show($page)
     {
-        $news = News::all();
-        return view('news', ['news' => $news]);
+		$news = News::all();
+		
+		// на 1 странице допустим 2 записи:
+		$one_page = 2;		
+		//тогда всего страниц:
+		$num_pages = intval(count($news)/$one_page+0.5);
+		
+		//постраничный вывод c записью в массив:		
+		$offset = $one_page * ($page-1);
+		
+		$previous = $page-1;		
+		$next = $page+1;
+		
+		$photofolders = DB::table('news')->offset($offset)->limit($one_page)->get();
+
+		return view ('news', ['news' => $photofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
     }
 
-    public function show($id)
+    public function showOne($id)
     {
         $one_news = News::find($id);
         return view ('one_news', ['one_news' => $one_news]);
