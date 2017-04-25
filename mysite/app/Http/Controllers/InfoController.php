@@ -12,7 +12,7 @@ class InfoController extends Controller
 	public $name_uri;
 	public $title;
 	public $temps;
-	public $folder;
+	public $myurl;
 	public $type;
 	
 	public function __construct()
@@ -23,7 +23,7 @@ class InfoController extends Controller
 		{
             $this->temps = Info::where('type', 'e')->get();
 			$this->title='События';
-			$this->folder='events';
+			$this->myurl='event';
 			$this->type='e';
 			
 		}
@@ -31,14 +31,14 @@ class InfoController extends Controller
         {
             $this->temps = Info::where('type', 'c')->get();
 			$this->title='Поздравления';
-			$this->folder='congrats';
+			$this->myurl='congrat';
 			$this->type='c';
 		}
         elseif (substr_count($this->name_uri, 'info') > 0)
         {
             $this->temps = Info::where('type', 'i')->get();
 			$this->title='Информация';
-			$this->folder='infos';
+			$this->myurl='info';
 			$this->type='i';
 		}
 		
@@ -51,12 +51,12 @@ class InfoController extends Controller
 	
 	public function showAdmin()
 	{
-		return view('admin.admin_infos', ['temps' => $this->temps, 'title' => $this->title, 'folder' => $this->folder]);
+		return view('admin.admin_infos', ['temps' => $this->temps, 'title' => $this->title, 'myurl' => $this->myurl]);
 	}
 	
-	public function addAdmin()
+	public function add()
 	{
-		return view ('admin.admin_info_add', ['title' => $this->title, 'folder' => $this->folder]);
+		return view ('admin.admin_info_add', ['title' => $this->title, 'myurl' => $this->myurl]);
 	}
 	
 	public function store(Request $request)
@@ -68,12 +68,55 @@ class InfoController extends Controller
 		
 		$imageName = time().'.'. $request->myfile->getClientOriginalExtension();
 		$info->image_path = $imageName;
-		$request->myfile->move(public_path().'/images/'.$this->folder, $imageName);
+		$request->myfile->move(public_path().'/images/infos', $imageName);
 		
 		$info->save();
 		
-		return redirect('/admin_'.$this->folder);
-		//url('/admin_'.$folder.'_add')
+		return redirect('/admin_'.$this->myurl. 's');
+			
 	}
+	
+	public function edit($id)
+	{
+		$info = Info::find($id);
+		return view('admin.admin_info_edit', ['info' => $info]);
+	}
+	
+	public function update(Request $request, $id)
+	{		
+		$info = Info::find($id);
+		$info->name = $request->name;
+		$info->description = $request->description;
+		
+		if (!empty($request->file))		
+		{
+			$uploaddir = 'images/infos/';
+			$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+			$uploadname = time() . '.' . $extension;			
+			$uploadfile = $uploaddir . $uploadname;
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile))
+			{
+				unlink('images/infos/'.$info->image_path);
+				$info->image_path = $uploadname;
+			}					
+		}
+		
+		$info->save();
+		return back();
+	}
+	 public function delete($id)
+	 {
+		$info = Info::find($id);
+		$info->delete();		
+		unlink('images/infos/'.$info->image_path);
+		
+		return back();
+		 
+	 }
+	
+	
+	
+	
+	
 	
 }

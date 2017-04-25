@@ -87,9 +87,6 @@ Route::group(['middleware' => 'admin'], function () {
 	
 	
 	//VIDEO:
-	/*Route::get('/admin_videogallery', function () {
-		return view('admin.admin_videogallery');
-	});*/
 	Route::get('/admin_videogallery', 'VideoFolderController@showAdmin');
 	Route::get('/admin_videofolder_add', function () {
 		return view('admin.admin_videofolder_add');
@@ -108,15 +105,22 @@ Route::group(['middleware' => 'admin'], function () {
 	Route::get('/admin_congrats', 'InfoController@showAdmin');
 	Route::get('/admin_infos', 'InfoController@showAdmin');
 	
-	Route::get('/admin_infos_add', 'InfoController@addAdmin');
-	Route::get('/admin_events_add', 'InfoController@addAdmin');
-	Route::get('/admin_congrats_add', 'InfoController@addAdmin');
+	Route::get('/admin_info_add', 'InfoController@add');
+	Route::get('/admin_event_add', 'InfoController@add');
+	Route::get('/admin_congrat_add', 'InfoController@add');
 	
-	Route::post('/admin_events_add', 'InfoController@store');
-	Route::post('/admin_congrats_add', 'InfoController@store');
-	Route::post('/admin_infos_add', 'InfoController@store');
+	Route::post('/admin_event_add', 'InfoController@store');
+	Route::post('/admin_congrat_add', 'InfoController@store');
+	Route::post('/admin_info_add', 'InfoController@store');
 
+	Route::get('/admin_info_edit_{id}', 'InfoController@edit');	
+	Route::get('/admin_event_edit_{id}', 'InfoController@edit');
+	Route::get('/admin_congrat_edit_{id}', 'InfoController@edit');
+		
+	Route::post('/admin_info_update_{id}', 'InfoController@update');
+	Route::get('/admin_info_delete_{id}', 'InfoController@delete');	
 	
+	//TEST:
 	Route::get('/admin_test', function() {
 		return view('admin.admin_test');
 	});
