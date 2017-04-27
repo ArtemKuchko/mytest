@@ -72,12 +72,10 @@
         <hr>
 
         <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Admin</p>
-                </div>
-            </div>
+        <footer>            
+			<div class="col-lg-12">
+				<p>Copyright &copy; Admin</p>
+			</div>           
         </footer>
 		
 		<iframe data-reactroot="" id="launcher" class="zEWidget-launcher zEWidget-launcher--active" style="border: none; background: transparent; z-index: 999998; transform: translateZ(0px); position: fixed; opacity: 1; right: 0px; bottom: 0px; width: 159px; height: 47px; margin: 10px 20px; transition-property: all; transition-timing-function: ease-out; transition-duration: 300ms;"></iframe>

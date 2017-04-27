@@ -31,11 +31,14 @@
 				@else
 					<div class="item">
 				@endif
-					<img class="img-responsive center-block" src="{{ 'images/news/'. $news->image_path }}" alt="...">
-					<!--<div class="fill" style="background-image:url(  );"></div>-->
-					<div class="carousel-caption">
-						<h2>{{ $news->name }}</h2>
-					</div>
+					
+					<a href="{{url('/news/'.$news->id)}}">
+						<img class="img-responsive center-block" src="{{ 'images/news/'. $news->image_path }}" alt="...">
+						<!--<div class="fill" style="background-image:url(  );"></div>-->
+						<div class="carousel-caption">
+							<h2>{{ $news->name }}</h2>
+						</div>
+					</a>
 				</div>
 			@endforeach
 			
@@ -59,8 +62,13 @@
                     </h4>
                 </div>
                 <div class="panel-body fixed-panel">
-                    <p>{{ str_limit($last_i['event']->name, 100) }}</p>
-                    <a href="{{ url('/events') }}" class="btn btn-default">Подробнее</a>
+					<div class="col-md-6">
+						<img height="100px" src="{{ asset('images/event_logo.gif')}}">
+					</div>
+					<div class="col-md-6">
+						<p>{{ str_limit($last_i['event']->name, 100) }}</p>
+						<a href="{{ url('/events') }}" class="btn btn-default">Подробнее</a>
+					</div>
                 </div>
             </div>
         </div>
@@ -70,8 +78,13 @@
                     <h4><i class="fa fa-fw fa-gift"></i> Поздравляем! </h4>
                 </div>
                 <div class="panel-body fixed-panel">
-                    <p>{{ str_limit($last_i['congratulation']->name, 100) }}</p>
-                    <a href="{{ url('/congrats') }}" class="btn btn-default">Подробнее</a>
+					<div class="col-md-6">
+						<img height="100px" src="{{ asset('images/congrat_logo.png')}}">
+					</div>
+					<div class="col-md-6">
+						<p>{{ str_limit($last_i['congratulation']->name, 100) }}</p>
+						<a href="{{ url('/congrats') }}" class="btn btn-default">Подробнее</a>
+					</div>
                 </div>
             </div>
         </div>
@@ -81,8 +94,13 @@
                     <h4><i class="fa fa-fw fa-info"></i> Информация </h4>
                 </div>
                 <div class="panel-body fixed-panel">
-                    <p>{{ str_limit($last_i['info']->name, 100)}}</p>
-                    <a href="{{ url('/info') }}" class="btn btn-default">Подробнее</a>
+					<div class="col-md-6">
+						<img height="100px" src="{{ asset('images/info_logo.png')}}">
+					</div>
+					<div class="col-md-6">
+						<p>{{ str_limit($last_i['info']->name, 100)}}</p>
+						<a href="{{ url('/infos') }}" class="btn btn-default">Подробнее</a>
+					</div>
                 </div>
             </div>
         </div>

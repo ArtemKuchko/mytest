@@ -33,7 +33,6 @@ class VideoFolderController extends Controller
 		$videofolders = DB::table('videofolders')->offset($offset)->limit($one_page)->get();
 
 		return view ('videofolders', ['videofolders' => $videofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
-
     }
 	
 	public function showAdmin()

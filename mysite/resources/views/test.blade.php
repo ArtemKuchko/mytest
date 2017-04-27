@@ -1,187 +1,169 @@
-<!doctype html>
+@extends ('main')
 
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Test</title>
+@section ('head')
+	
+	@parent	
+	<style>
+		.hide-bullets {
+			list-style:none;
+			margin-left: -40px;
+			margin-top:20px;
+		}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+			width: 100%;
+		}
+		
+		.thumbnail{
+		
+		width : 100%;
+		//height: 100px;
+		overflow: auto;
+		}
 
-    <!-- Force latest IE rendering engine or ChromeFrame if installed -->
-    <!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <![endif]-->
+		.thumbnail img{
+		// your styles for the image
+		width: 100%;
+		height: auto;
+		display: block;
+		}
+		
+	</style>
 
-    <meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bars, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads and client-side image resizing. Works with any server-side platform (PHP, Python, Ruby on Rails, Java, Node.js, Go etc.) that supports standard HTML form file uploads.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!-- Generic page styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- blueimp Gallery styles -->
-    <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="css/jquery.fileupload.css">
-    <link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+@endsection
 
-</head>
+@section('content')
 
-<body>
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">{{ $folder->name }}
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="{{ url('/') }}">Главная</a>
+					</li>
+					<li><a href="{{ url('/videofolders') }}">Видеогалерея</a>
+					</li>
+					<li class="active">{{ $folder->name }}
+					</li>
+				</ol>
+			</div>
+		</div>
+		<!-- /.row -->
+		
+	@if(count($folder->videos) > 0)
+		<div id="main_area">
+			<!-- Slider -->
+			<div class="row">
+				
+				<!--<button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>-->
+				<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				  <div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
+							 <!-- Carousel items -->
+							<div class="carousel-inner">
+								
+								@for($i=0; $i < count($folder->videos); $i++)
+									
+									@if ($i == 0)
+										<div class="active item" data-slide-number="{{ $i }}">
+									@else
+										<div class="item" data-slide-number="{{ $i }}">
+									@endif
+										
+										<video width="320" height="240" controls>
+											<source="{{asset('videos/' . $folder->id. '/' .$folder->videos[$i]->video_path)}}">
+										</video>
+									</div>
+							
+								@endfor
 
-    <form id="fileupload" action="server/php/upload.php" method="POST" enctype="multipart/form-data">
-        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class="row fileupload-buttonbar">
-            <div class="col-lg-8">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    <span>Прикрепить...</span>
-                    <input type="file" name="files[]" multiple>
-                </span>
-                <button type="submit" class="btn btn-primary start">
-                    <i class="glyphicon glyphicon-upload"></i>
-                    <span>Загрузить</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
-                    <span>Отменить загрузку</span>
-                </button>
-                <button type="button" class="btn btn-danger delete">
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Удалить</span>
-                </button>
-                <input type="checkbox" class="toggle">
-                <!-- The global file processing state -->
-                <span class="fileupload-process"></span>
-            </div>
-            <!-- The global progress state -->
-            <div class="col-lg-5 fileupload-progress fade">
-                <!-- The global progress bar -->
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
-                </div>
-                <!-- The extended global progress state -->
-                <div class="progress-extended">&nbsp;</div>
-            </div>
-        </div>
-        <!-- The table listing the files available for upload/download -->
-        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-    </form>
+								</div>
 
-    <!-- The template to display files available for upload -->
-    <script id="template-upload" type="text/x-tmpl">
-	{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-upload fade">
-			<td>
-				<span class="preview"></span>
-			</td>
-			<td>
-				<p class="name">{%=file.name%}</p>
-				<strong class="error text-danger"></strong>
-			</td>
-			<td>
-				<p class="size">Processing...</p>
-				<div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
-			</td>
-			<td>
-				{% if (!i && !o.options.autoUpload) { %}
-					<button class="btn btn-primary start" disabled>
-						<i class="glyphicon glyphicon-upload"></i>
-						<span>Загрузить</span>
-					</button>
-				{% } %}
-				{% if (!i) { %}
-					<button class="btn btn-warning cancel">
-						<i class="glyphicon glyphicon-ban-circle"></i>
-						<span>Отменить</span>
-					</button>
-				{% } %}
-			</td>
-		</tr>
-	{% } %}
+								<!-- Controls -->
+								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
+						  
+							</div>
+						</div>
+				  </div>
+				</div>
+				
+				
+				<div class="col-lg-12">	
+					
+					@foreach($folder->videos as $video)
+						
+						@if (($loop->index)%4 ==0)
+							<div class="row">
+						@endif
+							
+						<div class="col-md-3 img-portfolio">			
+							<!--<a href="#" id="{{'carousel-selector-'.$loop->index}}" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg">-->								
+								{{--<video controls id="{{'carousel-selector-'.$loop->index}}" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg">
+									<source="{{asset('videos/' . $folder->id. '/' .$video->video_path)}}">
+								</video>--}}
+								<iframe id="{{'carousel-selector-'.$loop->index}}" class="thumbnail" data-toggle="modal" data-target=".bs-example-modal-lg" src="//www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>
+							<!--</a>-->
+
+						</div>
+						
+						@if ((($loop->index)+1)%4 ==0)
+							</div>
+							
+						@endif
+						
+					@endforeach
+	
+				</div>
+		</div>
+	@else
+		
+	<p> В данном альбоме пока нет видео :-( </p>
+	
+	@endif
+
+@endsection
+		
+@section ('scripts')
+
+	@parent
+	
+	<script>
+		  jQuery(document).ready(function($) {
+		 
+				$('#myCarousel').carousel({
+						interval: 5000
+				});
+		 
+				//Handles the carousel thumbnails
+				$('[id^=carousel-selector-]').click(function () {
+				var id_selector = $(this).attr("id");
+				try {
+					var id = /-(\d+)$/.exec(id_selector)[1];
+					console.log(id_selector, id);
+					jQuery('#myCarousel').carousel(parseInt(id));
+				} catch (e) {
+					console.log('Regex failed!', e);
+				}
+			});
+				// When the carousel slides, auto update the text
+				$('#myCarousel').on('slid.bs.carousel', function (e) {
+						 var id = $('.item.active').data('slide-number');
+						$('#carousel-text').html($('#slide-content-'+id).html());
+				});
+		});		
 	</script>
-    <!-- The template to display files available for download -->
-    <script id="template-download" type="text/x-tmpl">
-	{% for (var i=0, file; file=o.files[i]; i++) { %}
-		<tr class="template-download fade">
-			<td>
-				<span class="preview">
-					{% if (file.thumbnailUrl) { %}
-						<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-					{% } %}
-				</span>
-			</td>
-			<td>
-				<p class="name">
-					{% if (file.url) { %}
-						<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-					{% } else { %}
-						<span>{%=file.name%}</span>
-					{% } %}
-				</p>
-				{% if (file.error) { %}
-					<div><span class="label label-danger">Error</span> {%=file.error%}</div>
-				{% } %}
-			</td>
-			<td>
-				<span class="size">{%=o.formatFileSize(file.size)%}</span>
-			</td>
-			<td>
-				{% if (file.deleteUrl) { %}
-					<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-						<i class="glyphicon glyphicon-trash"></i>
-						<span>Delete</span>
-					</button>
-					<input type="checkbox" name="delete" value="1" class="toggle">
-				{% } else { %}
-					<button class="btn btn-warning cancel">
-						<i class="glyphicon glyphicon-ban-circle"></i>
-						<span>Cancel</span>
-					</button>
-				{% } %}
-			</td>
-		</tr>
-	{% } %}
-	</script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-    <script src="js/vendor/jquery.ui.widget.js"></script>
-    <!-- The Templates plugin is included to render the upload/download listings -->
-    <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
-    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-    <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <!-- blueimp Gallery script -->
-    <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-    <script src="js/jquery.iframe-transport.js"></script>
-    <!-- The basic File Upload plugin -->
-    <script src="js/jquery.fileupload.js"></script>
-    <!-- The File Upload processing plugin -->
-    <script src="js/jquery.fileupload-process.js"></script>
-    <!-- The File Upload image preview & resize plugin -->
-    <script src="js/jquery.fileupload-image.js"></script>
-    <!-- The File Upload audio preview plugin -->
-    <script src="js/jquery.fileupload-audio.js"></script>
-    <!-- The File Upload video preview plugin -->
-    <script src="js/jquery.fileupload-video.js"></script>
-    <!-- The File Upload validation plugin -->
-    <script src="js/jquery.fileupload-validate.js"></script>
-    <!-- The File Upload user interface plugin -->
-    <script src="js/jquery.fileupload-ui.js"></script>
-    <!-- The main application script -->
-    <script src="js/main.js"></script>
-    <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
-    <!--[if (gte IE 8)&(lt IE 10)]>
-    <script src="js/cors/jquery.xdr-transport.js"></script>
-    <![endif]-->
-
-
-</body>
-</html>
-
+@endsection
+		
+		
+		
+		
+		

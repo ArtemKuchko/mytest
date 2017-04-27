@@ -26,17 +26,17 @@
                 <p>June 17, 2014</p>
             </div>
             <div class="col-md-6 text-center">
-                <a href="{{ url('/videos_'. $folder->id) }}">                    
-					<img src="{{'images/videofolders/' . $folder->image_path}}" class="img-thumbnail" alt="" width="400" height="500">
+                <a href="{{ url('/videofolder/'. $folder->id) }}">                    
+					<img src="{{ asset('images/videofolders/' . $folder->image_path) }}" class="img-thumbnail" alt="" width="400" height="500">
                 </a>
             </div>
             <div class="col-md-4">
-                <h3><a href="{{ url('/videos_'. $folder->id) }}">{{ $folder -> name }}</a>
+                <h3><a href="{{ url('/videofolder/'. $folder->id) }}">{{ $folder -> name }}</a>
                 </h3>
 
                 </p>
                 <p>{{ str_limit($folder->description, 300) }}</p>
-                <a class="btn btn-primary" href="{{ url('/video_'. $folder->id) }}">Просмотр <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-primary" href="{{ url('/videofolder/'. $folder->id) }}">Просмотр <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
         <!-- /.row -->

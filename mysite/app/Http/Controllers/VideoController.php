@@ -9,36 +9,13 @@ use App\VideoFolder;
 
 
 class VideoController extends Controller
-{
-    //
-		/*public function index()
-    {
-        $news = News::all();		
-		
-		$start = 0;			
-		$range = 2; //кол-во новостей на 1 стр			
-		
-		for ($i=0, $pages = intval(count($news)/$range); $i < $pages; $i++)
-		{
-			$end = $start + $range;
-			echo 'Страница номер -'.$i.': </br>';
-			for ($j=$start; $j<$end; $j++)
-			{
-				echo $news[$j]->name.'</br>';
-			}
-			$start = $end;
-			
-		}
-		
-		return view('news', ['news' => $news]);
-    }*/
-	
+{	
 	public function show($id)
     {		
         $folder = VideoFolder::find($id);				
-		$videos = $folder->videos;
+		//$videos = $folder->videos;
 		
-		return view('videos', ['videos' => $videos, 'folder' => $folder]);    	
+		return view('videos', ['folder' => $folder]);    	
     }
 	
 	public function add($id)

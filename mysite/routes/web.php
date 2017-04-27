@@ -15,7 +15,7 @@ Route::get('/', 'MainController@index');
 
 Route::get('/news', 'NewsController@index');
 Route::get('/news_{page}', 'NewsController@show');
-Route::get('/news_one_{id}', 'NewsController@showOne');
+Route::get('/news/{id}', 'NewsController@showOne');
 
 Route::get('/photofolders', 'PhotoFolderController@index');
 Route::get('/photofolders_{page}', 'PhotoFolderController@show');
@@ -23,12 +23,19 @@ Route::get('/photos_{id}', 'PhotoController@show');
 
 Route::get('/videofolders', 'VideoFolderController@index');
 Route::get('/videofolders_{page}', 'VideoFolderController@show');
-//Route::get('/videos_{id}', 'VideoController@show');
-Route::get('/videos/{id}', 'VideoController@show');
+Route::get('/videofolder/{id}', 'VideoController@show');
 
-Route::get('/events', 'InfoController@show');
-Route::get('/congrats', 'InfoController@show');
-Route::get('/info', 'InfoController@show');
+Route::get('/events', 'InfoController@index');
+Route::get('/congrats', 'InfoController@index');
+Route::get('/infos', 'InfoController@index');
+
+Route::get('/events_{page}', 'InfoController@show');
+Route::get('/congrats_{page}', 'InfoController@show');
+Route::get('/infos_{page}', 'InfoController@show');
+
+Route::get('/event/{id}', 'InfoController@showOne');
+Route::get('/congrat/{id}', 'InfoController@showOne');
+Route::get('/info/{id}', 'InfoController@showOne');
 
 
 Route::get('/test', 'TestController@index');

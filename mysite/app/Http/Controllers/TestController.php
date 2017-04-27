@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 
+use App\VideoFolder;
+
 class TestController extends Controller
 {
     /**
@@ -12,11 +14,14 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-		return view('admin.admin_test');
-
-    }
+	
+	public function index()
+	{
+		$folder = VideoFolder::find(1);
+		
+		//dd($folder->videos);
+		return view('test', ['folder'=>$folder]);
+	}
 	
 	public function store(Request $request)
 	{
@@ -45,15 +50,4 @@ class TestController extends Controller
 		
 	}
 	
-	  /*public function delete($id)
-		{
-			$upload = Upload::find($id);
-			$upload->delete();
-
-			$success = new stdClass();
-			$success->{$upload->filename} = true;
-
-			return Response::json(array('files'=> array($success)), 200);
-		}*/
-
 }

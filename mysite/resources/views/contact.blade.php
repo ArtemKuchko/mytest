@@ -38,16 +38,16 @@
                     <abbr title="Hours"></abbr>: Понедельник - Суббота: с 8:00 до 19:00</p>
                 <ul class="list-unstyled list-inline list-social-icons">
                     <li>
-                        <a href="#"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a target="_blank" href="https://vk.com/wushu_mariupol"><i class="fa fa-vk fa-2x"></i></a>
+                    </li>
+					<li>
+                        <a target="_blank" href="#"><i class="fa fa-facebook fa-2x"></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
-                    </li>
+                        <a target="_blank" href="#"><i class="fa fa-linkedin fa-2x"></i></a>
+                    </li>                    
                     <li>
-                        <a href="#"><i class="fa fa-vk fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                        <a target="_blank" href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
                     </li>
                 </ul>
             </div>

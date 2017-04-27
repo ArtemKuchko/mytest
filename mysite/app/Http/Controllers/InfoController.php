@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Info;
+use DB;
 
 class InfoController extends Controller
 {    
@@ -40,19 +41,38 @@ class InfoController extends Controller
 			$this->title='Информация';
 			$this->myurl='info';
 			$this->type='i';
-		}
-		
+		}		
 	}
 	
-    public  function show()
-    {			
-        return view('info', ['temps' => $this->temps, 'title' => $this->title]);
+	public function index()
+	{
+		return redirect ('/'.$this->myurl.'s_1');
+	}
+	
+    public  function show($page)
+    {	
+		//всего новостей:
+		$amount = $this->temps->count();		
+		
+		//кол-во новостей на 1 странице:
+		$one_page = 2;		
+		
+		$temps = DB::table('info')->where('type', $this->type)->offset($one_page * ($page-1))->limit($one_page)->get();	
+		
+        return view('info', ['temps' => $temps, 'title' => $this->title, 'myurl' => $this->myurl, 'page' => $page, 'one_page'=>$one_page, 'amount'=>$amount]);
     }
 	
 	public function showAdmin()
 	{
 		return view('admin.admin_infos', ['temps' => $this->temps, 'title' => $this->title, 'myurl' => $this->myurl]);
 	}
+	
+	public function showOne($id)
+	{
+		$one_info=Info::find($id);
+		return view ('one_info', ['one_info'=>$one_info, 'title' => $this->title, 'myurl' => $this->myurl]);
+	}
+	
 	
 	public function add()
 	{

@@ -79,4 +79,4 @@
 		
 	</form>	
 
-@endsection.
+@endsection

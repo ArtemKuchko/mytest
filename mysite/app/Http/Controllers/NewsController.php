@@ -18,22 +18,15 @@ class NewsController extends Controller
 	
 	public function show($page)
     {
-		$news = News::all();
+		//всего новостей:
+		$amount = News::all()->count();
 		
-		// на 1 странице допустим 2 записи:
-		$one_page = 2;		
-		//тогда всего страниц:
-		$num_pages = intval(count($news)/$one_page+0.5);
+		//кол-во новостей на 1 странице:
+		$one_page = 3;		
 		
-		//постраничный вывод c записью в массив:		
-		$offset = $one_page * ($page-1);
-		
-		$previous = $page-1;		
-		$next = $page+1;
-		
-		$photofolders = DB::table('news')->offset($offset)->limit($one_page)->get();
+		$news = DB::table('news')->offset($one_page * ($page-1))->limit($one_page)->get();
 
-		return view ('news', ['news' => $photofolders, 'num_pages' => $num_pages, 'page' => $page, 'previous' => $previous, 'next' => $next]);
+		return view ('news', ['news' => $news, 'page' => $page, 'one_page' => $one_page, 'amount' => $amount]);
     }
 
     public function showOne($id)

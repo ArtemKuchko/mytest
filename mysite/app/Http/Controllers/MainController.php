@@ -13,7 +13,7 @@ class MainController extends Controller
 	public function index()
 	{
 		
-		$last_news = News::orderBy('id', 'desc')->take(3)->get();
+		$last_news = News::orderBy('id', 'desc')->take(7)->get();
 		
 		// mask: e - event, c - congratulation, i - other information
 		
